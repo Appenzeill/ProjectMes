@@ -2,6 +2,7 @@
     font-size: 14px;
 }
 
+
 /**
  *  Login css
  */
@@ -47,19 +48,30 @@ input {
     padding: 10px 0;
     width: 250px;
     transition: border .5s;
+
 }
 
 input.standard-input {
     text-align: center;
     border: 2px solid transparent;
     border-radius: 3px;
-    font-size: 16px;
+    font-size: 14px;
+    color: white;
     font-weight: 200;
-    padding: 10px 0;
+    padding: 9px 0;
     width: 250px;
     transition: border .5s;
     background-color: #3498DB;
 
+}
+
+
+input.topnav-input {
+    padding-left: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: black;
+    background-color: white;
 }
 
 input:focus {
@@ -451,4 +463,9 @@ h1.page-header {
 .panel-heading {
     background-color: #3498DB;
 
+}
+
+#container-top-fluid {
+    background-color: #3498DB;
+    color: white;
 }

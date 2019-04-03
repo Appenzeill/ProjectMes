@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-static-top" id="navbar-top">
-	<div class="container-fluid">
+	<div class="container-fluid" id="container-top-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
+		<div class="navbar-header" >
 			<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
 				MENU
 			</button>
@@ -28,7 +28,12 @@
 					<ul class="dropdown-menu" role="menu">
 						<li class="dropdown-header">Instellingen</li>
 						<li class=""><a href="#">Other Link</a></li>
+                        <form method="get">
+                            <input type="hidden" name="modify_user">
+                            <input type="submit" value="Pas persoonlijke gegevens aan" class="topnav-input">
+                        </form>
 						<li class="divider"></li>
+
 						<li><a href="logout.php">Logout</a></li>
 					</ul>
 				</li>

@@ -17,8 +17,6 @@ echo "
 foreach ($user->results() as $user) {
 $data1 = "Welkom ".$user->first_name." ".$user->last_name." op uw dashboard.<br>"
 ;
-$data2 = $user->hash."<br>"
-.$user->password;
 }
 
 
@@ -26,7 +24,7 @@ $data2 = $user->hash."<br>"
 
     <div class="col-md-10 content"  >
         <div class="panel panel-default">
-            <div class="panel-heading" style="background-color: #3498DB;" >
+            <div class="panel-heading" style="background-color: #3498DB; color: white;">
                 Dashboard
             </div>
             <div class="panel-body">
