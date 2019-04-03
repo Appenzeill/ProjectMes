@@ -49,6 +49,19 @@ input {
     transition: border .5s;
 }
 
+input.standard-input {
+    text-align: center;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border .5s;
+    background-color: #3498DB;
+
+}
+
 input:focus {
     border: 2px solid #3498DB;
     box-shadow: none;

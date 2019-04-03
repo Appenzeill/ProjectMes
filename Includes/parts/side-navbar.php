@@ -12,11 +12,11 @@
 						<ul class="nav navbar-nav">
 							<form method="get">
 								<input type="hidden" name="get_users">
-								<input type="submit" value="Dashboard">
+								<input type="submit" value="Dashboard" class="standard-input">
 							</form>
 							<form method="get">
 								<input type="hidden" name="register_user">
-								<input type="submit" value="Registreer gebruiker">
+								<input type="submit" value="Registreer gebruiker" class="standard-input">
 							</form>
 							<li><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
@@ -32,9 +32,14 @@
 								<div id="dropdown-lvl1" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul class="nav navbar-nav">
-											<li><a href="#">Link</a></li>
-											<li><a href="#">Link</a></li>
-											<li><a href="#">Link</a></li>
+                                            <form method="get">
+                                                <input type="hidden" name="get_users">
+                                                <input type="submit" value="Dashboard" class="standard-input">
+                                            </form>
+                                            <form method="get">
+                                                <input type="hidden" name="register_user">
+                                                <input type="submit" value="Registreer gebruiker" class="standard-input">
+                                            </form>
 
 											<!-- Dropdown level 2 -->
 											<li class="panel panel-default" id="dropdown">

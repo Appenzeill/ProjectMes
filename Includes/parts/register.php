@@ -6,7 +6,8 @@ $errors = '';
 ?>
 <div class="col-md-10 content">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading" style="background-color: #3498DB;" >
+
             Registreer gebruiker
         </div>
         <div class="panel-body">
