@@ -33,7 +33,7 @@
                         <li class=""><a href="#">Open staande</a></li>
                         <li class=""><a href="#">Betaald</a></li>
                         <li class="divider"></li>
-						<li><a href="logout.php">Logout</a></li>
+						<li><a href="logout.php">Logout </a></li>
 					</ul>
 				</li>
 			</ul>
