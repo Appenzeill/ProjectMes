@@ -27,8 +27,12 @@
 						<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li class="dropdown-header">Instellingen</li>
-						<li class=""><a href="#">Other Link</a></li>
-						<li class="divider"></li>
+						<li class=""><a href="#">Account gegevens</a></li>
+                        <li class=""><a href="#">Medische historie</a></li>
+                        <li class=""><a href="#">Facture</a></li>
+                        <li class=""><a href="#">Open staande</a></li>
+                        <li class=""><a href="#">Betaald</a></li>
+                        <li class="divider"></li>
 						<li><a href="logout.php">Logout</a></li>
 					</ul>
 				</li>
