@@ -27,7 +27,12 @@
 						<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li class="dropdown-header">Instellingen</li>
-						<li class=""><a href="#">Account gegevens</a></li>
+
+                        <form name="account_user">
+                            <input type="hidden" name="account_user">
+                            <input type="submit" value="Account gegevens">
+                        </form>
+
                         <li class=""><a href="#">Medische historie</a></li>
                         <li class=""><a href="#">Facture</a></li>
                         <li class=""><a href="#">Open staande</a></li>

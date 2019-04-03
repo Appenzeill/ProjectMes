@@ -16,6 +16,13 @@ if(isset($_GET['register_user']))
 	include_once("Includes/parts/register.php");
 }
 
+function account_user(){
+}
+if(isset($_GET['account_user']))
+{
+	include_once("Includes/parts/account.php");
+}
+
 ?>
 
 
