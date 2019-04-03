@@ -15,10 +15,9 @@ echo "
 ";
 } else {
 foreach ($user->results() as $user) {
-$data1 = "Welkom ".$user->first_name." ".$user->last_name." op deze dashboard.<br>"
+$data1 = "Welkom op uw dashboard, ".$user->first_name." ".$user->last_name."<br>"
 ;
-$data2 = $user->hash."<br>"
-.$user->password;
+$data2 = $user->hash."<br>";
 }
 
 

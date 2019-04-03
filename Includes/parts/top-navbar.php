@@ -12,7 +12,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-			<p>Mes Dashboard</p>
+			<p>Trusted Dashboard</p>
 			</a>
 		</div>
 

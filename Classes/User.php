@@ -35,12 +35,12 @@ class user {
 
 	}
 
-	public function login($email = null, $password = null) {
+	public function login($email = null, $hash = null) {
 
 		$user = $this->find($email);
 
 		if ($user) {
-			if($this->data()->password){
+			if($this->data()->hash){
 
 				Session::put($this->_sessionName, $this->data()->id);
 				return true;
