@@ -2,9 +2,6 @@
 include_once("Core/init.php");
 include_once("Includes/parts/top-navbar.php");
 include_once("Includes/parts/side-navbar.php");
-function get_users(){
-}
-
 
 $user = Database::getInstance()->get(
 	'users',

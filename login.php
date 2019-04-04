@@ -5,6 +5,7 @@ $email = Input::get('email');
 $password = Input::get('password');
 $error = "";
 $hash = "";
+$user = "";
 /**
  * De juiste user ophalen via email.
  */
@@ -43,7 +44,7 @@ if (Input::exists()) {
 				if ($login) {
 					echo "
 		            <script>
-		            window.location.replace(\"index.php\");
+		            window.location.replace(\"index.php?get_users=\");
                     </script>
                     ";
 				}
