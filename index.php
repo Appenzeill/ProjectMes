@@ -1,7 +1,7 @@
 <?php
 include_once("Core/init.php");
-include_once("Includes/parts/top-navbar.php");
-include_once("Includes/parts/side-navbar.php");
+include_once( "Includes/navigation/top-navbar.php" );
+include_once( "Includes/navigation/side-navbar.php" );
 
 $user = Database::getInstance()->get(
 	'users',
@@ -22,12 +22,21 @@ if(isset($_GET['get_users']))
 	include_once("Includes/parts/dashboard.php");
 }
 
-function register_user(){
+if(isset($_GET['register_permission']))
+{
+	include_once("Includes/parts/permission-add.php");
 }
+
+if(isset($_GET['add_role']))
+{
+	include_once("Includes/parts/role-add.php");
+}
+
 if(isset($_GET['register_user']))
 {
 	include_once("Includes/parts/register.php");
 }
+
 if(isset($_GET['modify_user']))
 {
 	include_once("Includes/parts/modify.php");

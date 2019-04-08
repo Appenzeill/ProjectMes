@@ -18,6 +18,14 @@
 								<input type="hidden" name="register_user">
 								<input type="submit" value="Registreer gebruiker" class="standard-input">
 							</form>
+                            <form method="get">
+                                <input type="hidden" name="register_permission">
+                                <input type="submit" value="Permissions" class="standard-input">
+                            </form>
+                            <form method="get">
+                                <input type="hidden" name="add_role">
+                                <input type="submit" value="Rol toevoegen" class="standard-input">
+                            </form>
 							<li><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
 
@@ -39,6 +47,10 @@
                                             <form method="get">
                                                 <input type="hidden" name="register_user">
                                                 <input type="submit" value="Registreer gebruiker" class="standard-input">
+                                            </form>
+                                            <form method="get">
+                                                <input type="hidden" name="register_permission">
+                                                <input type="submit" value="Permissions" class="standard-input">
                                             </form>
 
 											<!-- Dropdown level 2 -->

@@ -91,7 +91,7 @@ class Database {
 			}
 			$x++;
 		}
-		$sql = "INSERT INTO users (`" . implode('`, `',$keys) ."`) VALUES ({$values})";
+		$sql = "INSERT INTO {$table} (`" . implode('`, `',$keys) ."`) VALUES ({$values})";
 
 		if (!$this->query($sql,$fields)->error()) {
 			return true;
@@ -114,6 +114,32 @@ class Database {
 				$x++;
 			}
 			$sql = "INSERT INTO {$table} (`" . implode('`, `',$keys) ."`) VALUES ({$values})";
+
+			if (!$this->query($sql,$fields)->error()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function join_permissions($table, $fields = []) {
+		if (count($fields)) {
+			$keys = array_keys($fields);
+			$values = '';
+			$x = 1;
+
+			foreach($fields as $field) {
+				$values .='?';
+				if ($x < count($fields)) {
+					$values .= ', ';
+				}
+				$x++;
+			}
+			$sql = "
+			SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+			FROM {$table}
+			INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+			";
 
 			if (!$this->query($sql,$fields)->error()) {
 				return true;

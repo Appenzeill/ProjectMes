@@ -12,7 +12,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-			<p>Mes Dashboard</p>
+			<p class="white-p">Mes Dashboard</p>
 			</a>
 		</div>
 
@@ -23,7 +23,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown ">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
+                        <span class="white-span">Account</span>
 						<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li class="dropdown-header">Instellingen</li>
