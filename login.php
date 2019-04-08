@@ -40,10 +40,10 @@ if (!$user->count()) {
 				$password   =   Input::get('password');
 				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 				if(password_verify($password, $hash)) {
-					if ($login) {
+					if ($user) {
                     echo "
 		            <script>
-		            window.location.replace(\"index.php\");
+		            window.location.replace(\"index.php?get_users=\");
                     </script>
                     ";
 					}

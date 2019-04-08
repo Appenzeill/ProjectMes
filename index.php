@@ -39,6 +39,27 @@ if(isset($_GET['account_user']))
 	include_once("Includes/parts/account.php");
 }
 
+function permission_dashboard(){
+}
+if(isset($_GET['permission_dashboard']))
+{
+	include_once("Includes/parts/permission-dashboard.php");
+}
+
+function role_dashboard(){
+}
+if(isset($_GET['role_dashboard']))
+{
+	include_once("Includes/parts/role-dashboard.php");
+}
+
+function rolename_expand(){
+}
+if(isset($_GET['rolename_expand']))
+{
+	include_once("Includes/parts/exspand-role-name-list.php");
+}
 ?>
+
 
 

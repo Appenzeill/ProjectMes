@@ -18,6 +18,20 @@
 								<input type="hidden" name="register_user">
 								<input type="submit" value="Registreer gebruiker">
 							</form>
+                            <form method="get">
+                                <input type="hidden" name="permission_dashboard">
+                                <input type="submit" value="Permission dashboard">
+                            </form>
+                            </form>
+                            <form method="get">
+                                <input type="hidden" name="role_dashboard">
+                                <input type="submit" value="Role dashboard">
+                            </form>
+                            </form>
+                            <form method="get">
+                                <input type="hidden" name="rolename_expand">
+                                <input type="submit" value="Role naam toevoegen ">
+                            </form>
 <!--							<li><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>-->
 <!--							<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>-->
 <!---->
