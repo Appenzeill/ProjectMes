@@ -39,10 +39,9 @@ if (Input::exists()) {
 							'user_role_description'  =>  Input::get('role_description'),
 						]);
 				}
-				$user = Database::getInstance()->get(
+				$user = Database::getInstance()->join_permissions(
 					'user_permission_lists',
 					[
-						'user_permission_list_id', '>=', 1
 					]);
 				if (!$user->count()) {
 					echo "Geen gebruiker";

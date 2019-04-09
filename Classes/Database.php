@@ -64,10 +64,19 @@ class Database {
 
 	public function get($table, $where) {
 		return $this->action('SELECT *',$table,$where);
-}
+	}
+
+	public function join_permissions($table1, $table2) {
+		return $this->action('
+				SELECT DISTINCT user_permission_lists.user_permission_list_id, user_permission_lists_name.user_permission_list_name
+FROM '.$table1.'
+INNER JOIN '.$table2.'
+ON user_permission_lists.user_permission_list_id=user_permission_lists_name.id; ');
+	}
 
 	public function  delete($table, $where) {
 		return $this->action('DELETE ',$table,$where);
+
 	}
 
 	public function results() {
@@ -122,31 +131,6 @@ class Database {
 		return false;
 	}
 
-	public function join_permissions($table, $fields = []) {
-		if (count($fields)) {
-			$keys = array_keys($fields);
-			$values = '';
-			$x = 1;
-
-			foreach($fields as $field) {
-				$values .='?';
-				if ($x < count($fields)) {
-					$values .= ', ';
-				}
-				$x++;
-			}
-			$sql = "
-			SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
-			FROM {$table}
-			INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
-			";
-
-			if (!$this->query($sql,$fields)->error()) {
-				return true;
-			}
-		}
-		return false;
-	}
 	public function update($table, $id, $fields) {
 		$set = '';
 		$x = 1;
