@@ -66,12 +66,12 @@ class Database {
 		return $this->action('SELECT *',$table,$where);
 	}
 
-	public function join_permissions($table1, $table2) {
+	public function join_permissions() {
 		return $this->action('
 				SELECT DISTINCT user_permission_lists.user_permission_list_id, user_permission_lists_name.user_permission_list_name
-FROM '.$table1.'
-INNER JOIN '.$table2.'
-ON user_permission_lists.user_permission_list_id=user_permission_lists_name.id; ');
+				FROM user_permission_lists
+				INNER JOIN user_permission_lists_name
+			    ON user_permission_lists.user_permission_list_id=user_permission_lists_name.id; ');
 	}
 
 	public function  delete($table, $where) {
