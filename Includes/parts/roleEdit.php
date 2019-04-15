@@ -30,7 +30,6 @@ $user = Database::getInstance()->get(
 	]);
 
 foreach ($user->results() as $user) {
-	$data1 = "Voeg een rol toe aan of pas de rol van ".$user->first_name." ".$user->last_name."<br>Rol id: ".$user->role_id;
 }
 
 
@@ -43,101 +42,65 @@ $query = Database::getInstance()->query(
 
 <div class="col-md-4     content">
     <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: #3498DB; color: white;">
-            Voeg rol toevoegen aan gebruiker.
+        <div class="panel-heading">
+            <h3>Aanpassen van rechten</h3>
         </div>
         <div class="panel-body">
-			<?php echo $data1; ?>
+            <p>Selecteer de rol die u wilt aanpassen:</p>
             <form action="" method="post">
-                <br>
-				<?php
-
-				?>
                 <select name="selectRole">
+                    <option value=""></option>
 					<?php
 					foreach ($query->results() as $query) {
 						echo "<option value='$query->role_name' "; echo "> ".$query->role_name."</option>";
 					}
-
 					?>
                 </select>
 				<?php
-				$query_id = Database::getInstance()->query(
+				$rawpermissions = Database::getInstance()->query(
 					"SELECT * FROM user_permission_lists WHERE role_name = '$selectRoleName'");
 
-
-				if (!$query_id->count()) {
-					echo "<br>Geen test<br>";
+				if (!$rawpermissions->count()) {
+					echo "<br>Geen rol geselecteerd<br>";
 				} else {
-					foreach ($query_id->results() as $query_id) {
-						$role_name = $query_id->role_name;
-						/**
-						 * ksejgsd
-						 */
-						echo "<br><br> Rol is nu ".$role_name."<br> ".$query_id->user_permission_id."<br>";
-						echo  $selectRoleID = $query_id->id;
-						$role = $query_id->id;
-
-						$get_permission_id = Database::getInstance()->get(
+				    echo "<br> Aanpassen van rol: <b>" .$selectRoleName. "<br>";
+					echo "<table>";
+					echo "<th>Status</th>";
+					echo "<th>Permission</th>";
+					echo "<th>Beschrijving</th>";
+					foreach ($rawpermissions->results() as $rp) {
+					    echo "<tr>";
+						$role_name = $rp->role_name;
+						$permission = Database::getInstance()->get(
 							'user_permissions',
 							[
-								'id', '=', $query_id->user_permission_id
+								'id', '=', $rp->user_permission_id
 							]);
-						foreach ($get_permission_id->results() as $get_permission_id) {
-							echo "<td>".$get_permission_id->user_permission_name ." </td>";
-							echo "<td>".$get_permission_id->user_permission_description. "</td>";
+
+						foreach ($permission->results() as $p) {
+							    ?>
+                                <td><input type="checkbox" value="<?php echo $p->id?>" <?php if ($p->id == $rp->user_permission_id) echo "checked='checked'"; ?>> </td>
+                                <?php
+							    echo "<td>".$p->user_permission_name ." </td>";
+							    echo "<td>".$p->user_permission_description. "</td>";
+                            }
 						}
-						Database::getInstance()->update(
-							'users',$id,
-							[
-								'role_id'  => $role
-							]);
+
+//						Database::getInstance()->update(
+//							'users',$id,
+//							[
+//								'role_id'  => $role_name
+//							]);
 					}
-				}
+					echo "</tr>";
+					echo "</table>";
+//				}
 				?>
         </div>
 		<?php echo $nope ?>
         <input type="hidden" name="token" value="<?php echo token::generate();?>">
-        <input type="submit" value="Voeg toe">
+        <input type="submit" value="Aanpassen">
         </form>
         <br>
     </div>
-</div>
-<div class="col-md-6 content"  >
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: #3498DB; color: white;">
-            Rechten van gebruiker
-        </div>
-        <div class="panel-body">
-			<?php
-			$userasf = Database::getInstance()->get(
-				'user_permission_lists',
-				[
-					'role_name', '=', $selectRoleName
-				]);
-			if (!$userasf->count()) {
-				echo "<br>Geen test<br>";
-			} else {
-				echo "<table>
-                        ";
-				foreach ($userasf->results() as $userasf) {
-					echo "<tr>";
-					$get_permission_id = Database::getInstance()->get(
-						'user_permissions',
-						[
-							'user_permission_id', '=', $userasf->id
-						]);
-					foreach ($get_permission_id->results() as $get_permission_id) {
-						echo "<td>".$get_permission_id->user_permission_name ." </td>";
-						echo "<td>".$get_permission_id->user_permission_description. "</td>";
-					}
-					echo "</tr>";
-				}
-				echo "</table>";
-				echo $selectRoleName;
-			}
-			?>
-        </div>
-    </div>
-</div>
 </div>
