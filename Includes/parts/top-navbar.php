@@ -1,63 +1,87 @@
-<nav class="navbar navbar-default navbar-static-top" id="navbar-top">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed">
-				MENU
-			</button>
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">
-			<p>Trusted Dashboard</p>
-			</a>
-		</div>
+<div class="d-flex" id="wrapper">
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<form class="navbar-form navbar-left" method="GET" role="search">
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown ">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
-						<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li class="dropdown-header">Instellingen</li>
+  <!-- Sidebar -->
+  <div class="bg-dark" id="sidebar-wrapper">
+    <div class="sidebar-heading text-white">
+      <h1 class="navbar-brand" href="#">Trusted</h1>
+    </div>
+    <div class="list-group list-group-flush">
+      <form method="get">
+        <input type="hidden" name="get_users">
+        <input class="list-group-item list-group-item-action brand-item" type="submit" value="Dashboard">
+      </form>
+      <form method="get">
+        <input type="hidden" name="register_user">
+        <input class="list-group-item list-group-item-action brand-item" type="submit" value="Registreer gebruiker">
+      </form>
+      <form method="get">
+        <input type="hidden" name="permission_dashboard">
+        <input class="list-group-item list-group-item-action brand-item" type="submit" value="Permission dashboard">
+      </form>
+      </form>
+      <form method="get">
+        <input type="hidden" name="role_dashboard">
+        <input class="list-group-item list-group-item-action brand-item" type="submit" value="Role toevoegen">
+      </form>
+      </form>
+      <form method="get">
+        <input type="hidden" name="rolename_expand">
+        <input class="list-group-item list-group-item-action brand-item" type="submit" value="Role aanpassen">
+      </form>
+    </div>
+  </div>
 
-                        <form name="account_user">
-                            <input type="hidden" name="account_user">
-                            <input type="submit" value="Account gegevens">
-                        </form>
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="btn-toggle-brand text-white" id="menu-toggle"><i class="material-icons">arrow_forward_ios</i></a>
 
-                        <li class=""><a href="#">Medische historie</a></li>
-                        <li class=""><a href="#">Facture</a></li>
-                        <li class=""><a href="#">Open staande</a></li>
-                        <li class=""><a href="#">Betaald</a></li>
-                        <li class="divider"></li>
-						<li><a href="logout.php">Logout </a></li>
-					</ul>
-				</li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
-</nav>
-<script>
-    $(function () {
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Username
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <form name="account_user">
+                <input type="hidden" name="account_user">
+                <input class="dropdown-item" type="submit" value="Profile">
+              </form>
+              <a class="dropdown-item" href="#">Medical history</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="logout.php">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Menu Toggle Script -->
+    <script>
+      $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+    </script>
+
+    <script>
+      $(function () {
         $('.navbar-toggle-sidebar').click(function () {
-            $('.navbar-nav').toggleClass('slide-in');
-            $('.side-body').toggleClass('body-slide-in');
-            $('#search').removeClass('in').addClass('collapse').slideUp(200);
+          $('.navbar-nav').toggleClass('slide-in');
+          $('.side-body').toggleClass('body-slide-in');
+          $('#search').removeClass('in').addClass('collapse').slideUp(200);
         });
 
         $('#search-trigger').click(function () {
-            $('.navbar-nav').removeClass('slide-in');
-            $('.side-body').removeClass('body-slide-in');
-            $('.search-input').focus();
+          $('.navbar-nav').removeClass('slide-in');
+          $('.side-body').removeClass('body-slide-in');
+          $('.search-input').focus();
         });
-    });
+      });
 
-</script>
+    </script>

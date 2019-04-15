@@ -21,35 +21,34 @@ $permission = Database::getInstance()->get(
         </div>
         <div class="panel-body">
 
-
-<form method="post">
-	<div class="field">
-        <h3>Nieuwe rol toevoegen:</h3>
-		<label for="username">Role naam</label>
-		<input type="text" name="permission_name" id="permission_name" placeholder="name" autocomplete="off">
-	</div>
-	<div class="field">
-        <table>
-            <tr>
-                <th>State</th>
-                <th>Naam</th>
-                <th>Beschrijving</th>
-            </tr>
-	        <?php
-	        foreach ($permission->results() as $p) {
-	        ?>
-            <tr>
-                <td><input type="checkbox" name="checkbox[]" value="<?php echo $p->id?>"></td>
-                <td><?php echo $p->user_permission_name; ?><td>
-                <td><?php echo $p->user_permission_description; ?></td>
-            </tr>
-		        <?php
-	        }
-	        ?>
-        </table>
-	</div>
-	<input type="submit" value="Toevoegen">
-</form>
+        <form method="post">
+          <div class="field">
+                <h3>Nieuwe rol toevoegen:</h3>
+            <label for="username">Role naam</label>
+            <input type="text" name="permission_name" id="permission_name" placeholder="name" autocomplete="off">
+          </div>
+          <div class="field">
+                <table>
+                    <tr>
+                        <th>State</th>
+                        <th>Naam</th>
+                        <th>Beschrijving</th>
+                    </tr>
+                  <?php
+                  foreach ($permission->results() as $p) {
+                  ?>
+                    <tr>
+                        <td><input type="checkbox" name="checkbox[]" value="<?php echo $p->id?>"></td>
+                        <td><?php echo $p->user_permission_name; ?><td>
+                        <td><?php echo $p->user_permission_description; ?></td>
+                    </tr>
+                    <?php
+                  }
+                  ?>
+                </table>
+          </div>
+          <input type="submit" value="Toevoegen">
+        </form>
 <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //                if (Input::exists()) {
@@ -71,6 +70,7 @@ $permission = Database::getInstance()->get(
             ?>
         </div>
     </div>
+</div>
 </div>
 <!--todo  reload voegt hij data toe aan de database
 <!--todo  als de naam al het id heeft moet hij dat zeggen en niet nog een keer toevoegen

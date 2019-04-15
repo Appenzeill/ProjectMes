@@ -42,3 +42,5 @@ $errors = '';
         </div>
     </div>
 </div>
+</div>
+</div>
