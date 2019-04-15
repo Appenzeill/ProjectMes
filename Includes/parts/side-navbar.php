@@ -25,12 +25,12 @@
                             </form>
                             <form method="get">
                                 <input type="hidden" name="role_dashboard">
-                                <input type="submit" value="Role dashboard">
+                                <input type="submit" value="Role toevoegen">
                             </form>
                             </form>
                             <form method="get">
                                 <input type="hidden" name="rolename_expand">
-                                <input type="submit" value="Role naam toevoegen ">
+                                <input type="submit" value="Role aanpassen">
                             </form>
 <!--							<li><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>-->
 <!--							<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>-->

@@ -50,14 +50,14 @@ function role_dashboard(){
 }
 if(isset($_GET['role_dashboard']))
 {
-	include_once("Includes/parts/role-dashboard.php");
+	include_once( "Includes/parts/roleToevoegen.php" );
 }
 
 function rolename_expand(){
 }
 if(isset($_GET['rolename_expand']))
 {
-	include_once("Includes/parts/exspand-role-name-list.php");
+	include_once( "Includes/parts/roleEdit.php" );
 }
 ?>
 
