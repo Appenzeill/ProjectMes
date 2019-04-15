@@ -3,7 +3,7 @@
   <!-- Sidebar -->
   <div class="bg-dark" id="sidebar-wrapper">
     <div class="sidebar-heading text-white">
-      <h1 class="navbar-brand" href="#">Trusted</h1>
+      <a href="#"><h1 class="navbar-brand text-white">Trusted</h1></a>
     </div>
     <div class="list-group list-group-flush">
       <form method="get">
