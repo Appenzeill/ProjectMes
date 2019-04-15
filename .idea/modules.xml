@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/Trusted.iml" filepath="$PROJECT_DIR$/.idea/Trusted.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/ProjectMes.iml" filepath="$PROJECT_DIR$/.idea/ProjectMes.iml" />
+>>>>>>> c25105ae95a17000f8e94dab67ed40338d314136
     </modules>
   </component>
 </project>

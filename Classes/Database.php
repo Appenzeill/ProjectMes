@@ -64,7 +64,12 @@ class Database {
 
 	public function get($table, $where) {
 		return $this->action('SELECT *',$table,$where);
-}
+	}
+
+//	public function getRoleName($colum, $table){
+//		return $this->action('SELECT DISTINCT', $colum, 'FROM', $table);
+//	}
+
 
 	public function  delete($table, $where) {
 		return $this->action('DELETE ',$table,$where);
