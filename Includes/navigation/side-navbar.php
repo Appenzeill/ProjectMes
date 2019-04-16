@@ -23,8 +23,8 @@
                                 <input type="submit" value="Permissions" class="standard-input">
                             </form>
                             <form method="get">
-                                <input type="hidden" name="add_role">
-                                <input type="submit" value="Rol toevoegen" class="standard-input">
+                                <input type="hidden" name="role_dashboard">
+                                <input type="submit" value="Rol dashboard" class="standard-input">
                             </form>
 							<li><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
