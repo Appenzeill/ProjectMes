@@ -25,12 +25,19 @@ if(isset($_GET['get_users']))
 	include_once("Includes/parts/dashboard.php");
 }
 
-function register_user(){
+function add_client(){
 }
-if(isset($_GET['register_user']))
+if(isset($_GET['add_client']))
 {
-	include_once("Includes/parts/register.php");
+	include_once( "Includes/parts/addClient.php" );
 }
+
+//function register_user(){
+//}
+//if(isset($_GET['register_user']))
+//{
+//	include_once( "Includes/parts/addClient.php" );
+//}
 
 function account_user(){
 }

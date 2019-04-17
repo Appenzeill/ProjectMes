@@ -14,8 +14,8 @@
                 <input type="submit" value="Dashboard">
               </form>
               <form method="get">
-                <input type="hidden" name="register_user">
-                <input type="submit" value="Registreer gebruiker">
+                <input type="hidden" name="add_client">
+                <input type="submit" value="Client toevoegen">
               </form>
               <form method="get">
                 <input type="hidden" name="permission_dashboard">
