@@ -58,7 +58,7 @@
 	                ]);
                 foreach ($user->results() as $u){
                 }
-                echo $u->username;
+                echo $u->first_name. " " .$u->last_name;
                 ?>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
