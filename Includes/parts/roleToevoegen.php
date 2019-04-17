@@ -16,7 +16,6 @@ $permission = Database::getInstance()->get(
 ?>
 <div class="col-md-10 content">
         <div class="panel-body">
-
         <form method="post">
             <h1 class="display-3 text-center">Nieuwe rol toevoegen</h1>
             <hr class="bg-secondary w-50">
