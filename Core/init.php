@@ -24,6 +24,12 @@ spl_autoload_register(function ($class){
 
 require_once 'Functions/sanitize.php';
 ?>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="theme-color" content="#343a40">
+
 <!-- Externe scripten en bestanden.-->
 <script src="JS/javascript.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">

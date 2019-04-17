@@ -3,7 +3,10 @@
   <!-- Sidebar -->
   <div class="bg-dark" id="sidebar-wrapper">
     <div class="sidebar-heading text-white">
-      <a href="#"><h1 class="navbar-brand text-white">Trusted</h1></a>
+      <a class="navbar-brand text-white" href="#">
+        <img src="images/trusted.svg" width="30" height="30" class="d-inline-block align-top mr-1" alt="">
+        Trusted
+      </a>
     </div>
     <div class="list-group list-group-flush">
       <form method="get">

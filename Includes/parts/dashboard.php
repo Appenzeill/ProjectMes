@@ -23,6 +23,7 @@ $data2 = $user->hash."<br>";
 
 }?>
       <div class="jumbotron bg-dark text-white m-4">
+        <img class="mx-auto d-block mb-4" style="height: 100px;" src="images/trusted.svg" alt="">
         <h1 class="display-3 text-center">Dashboard</h1>
         <p class="lead text-center"><?php echo $data1; ?></p>
       </div>
