@@ -1,91 +1,106 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: thega
- * Date: 8-4-2019
- * Time: 12:18
- */
-
 $errors = '';
+$nope = "";
+
+foreach ($user->results() as $user) {
+
+}
+
+$permission_name_filler    = "";
+$permission_description_filler   = "";
+if (Input::exists()) {
+	$permission_name_filler         = Input::get('permission_name');
+	$permission_description_filler  = Input::get('permission_description');
+}
+$selectRoleName     = "";
+$selectRoleID       = "";
+
+if (Input::exists()) {
+	$selectRoleName     = Input::get('selectRole');
+} else {
+
+}
+
 $id = Session::get(Config::get('session/session_name'));
 
-$role = Database::getInstance()->query(
+$user = Database::getInstance()->get(
+	'users',
+	[
+		'id', '=', $id
+	]);
+
+foreach ($user->results() as $user) {
+}
+
+
+/**
+ * Rollen selecteren:
+ */
+$query = Database::getInstance()->query(
 	"SELECT DISTINCT role_name FROM user_permission_lists");
 ?>
-<div class="col-md-10 content">
+
+<div class="col-md-4     content">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Role aanpassen
+            <h3>Aanpassen van rechten</h3>
         </div>
         <div class="panel-body">
-
-
-<form method="post">
-	<div class="field">
-		<label for="username">Rol naam</label>
-        <select id="list" onchange="selectedValue()">
-            <option value=""></option>
-			<?php
-			foreach ($role->results() as $r) {
-				?>
-                <option value="<?php echo $r->role_name ?>">
+            <p>Selecteer de rol die u wilt aanpassen:</p>
+            <form action="" method="post">
+                <select name="selectRole">
+                    <option value=""></option>
 					<?php
-					echo $r->role_name;
+					foreach ($query->results() as $query) {
+						echo "<option value='$query->role_name' "; echo "> ".$query->role_name."</option>";
+					}
 					?>
-                </option>
+                </select>
 				<?php
-			}
-			?>
-        </select>
-	</div>
-	<input type="submit" value="Aanpassen" onclick="<?php getPermission()?>">
-</form>
+				$rawpermissions = Database::getInstance()->query(
+					"SELECT * FROM user_permission_lists WHERE role_name = '$selectRoleName'");
 
-<p id="permission"></p>
-            <script>
-                function selectedValue() {
-                    var selectedRol = document.getElementById("list").value;
-                    console.log(selectedRol);
-                    return selectedRol;
-                }
-            </script>
+				if (!$rawpermissions->count()) {
+					echo "<br>Geen rol geselecteerd<br>";
+				} else {
+				    echo "<br> Aanpassen van rol: <b>" .$selectRoleName. "<br>";
+					echo "<table>";
+					echo "<th>Status</th>";
+					echo "<th>Permission</th>";
+					echo "<th>Beschrijving</th>";
+					foreach ($rawpermissions->results() as $rp) {
+					    echo "<tr>";
+						$role_name = $rp->role_name;
+						$permission = Database::getInstance()->get(
+							'user_permissions',
+							[
+								'id', '=', $rp->user_permission_id
+							]);
 
-	        <?php
-            function getPermission(){
-	            $getRol = "<script>document.write(selectedValue())</script>";
-	            $selectedRol = Database::getInstance()->get(
-		            'user_permission_lists',
-		            [
-			            'role_name', '>=', $getRol
-		            ]);
-	            foreach ($selectedRol->results() as $rol){
-		            ?>
-                    <label><?php echo $rol->user_permission_id?></label>
-		            <?php
-	            }
-            }
-	        ?>
+						foreach ($permission->results() as $p) {
+							    ?>
+                                <td><input type="checkbox" value="<?php echo $p->id?>" <?php if ($p->id == $rp->user_permission_id) echo "checked='checked'"; ?>> </td>
+                                <?php
+							    echo "<td>".$p->user_permission_name ." </td>";
+							    echo "<td>".$p->user_permission_description. "</td>";
+                            }
+						}
 
-
-
-
-
-
-
-
-
-	        <?php
-//	        if (Input::exists()) {
-//			        Database::getInstance()->insert(
-//				        'user_permission_lists_name',
-//				        [
-//					        'user_permission_list_name'  => Input::get('rol_naam'),
-//				        ]);
-//			        echo "Nieuwe gegevens toegevoegd!!";
-//		        }
-	        ?>
-
+//						Database::getInstance()->update(
+//							'users',$id,
+//							[
+//								'role_id'  => $role_name
+//							]);
+					}
+					echo "</tr>";
+					echo "</table>";
+//				}
+				?>
         </div>
+		<?php echo $nope ?>
+        <input type="hidden" name="token" value="<?php echo token::generate();?>">
+        <input type="submit" value="Aanpassen">
+        </form>
+        <br>
     </div>
 </div>
-<!--todo het maken van een fuctie voor de query
