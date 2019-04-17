@@ -77,6 +77,15 @@ background-attachment: fixed;
     cursor: pointer;
 }
 
+.btn-brand {
+    background-color: #b004c2 !important;
+}
+
+.btn-brand:hover {
+    background-color: #c907e0 !important;
+    color: #FFFFFF;
+}
+
 .search-bar {
     color: #fff;
 }

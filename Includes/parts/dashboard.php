@@ -22,17 +22,7 @@ $data2 = $user->hash."<br>";
 
 
 }?>
-    <div class="col-md-10 content" >
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Dashboard
-            </div>
-            <div class="panel-body">
-                <br>
-				<?php
-                echo $data1;
-				?>
-            </div>
-        </div>
-    </div>
-</div>
+      <div class="jumbotron bg-dark text-white m-4">
+        <h1 class="display-3 text-center">Dashboard</h1>
+        <p class="lead text-center"><?php echo $data1; ?></p>
+      </div>

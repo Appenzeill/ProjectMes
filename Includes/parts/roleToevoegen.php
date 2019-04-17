@@ -28,20 +28,30 @@ $permission = Database::getInstance()->get(
             <input type="text" name="permission_name" id="permission_name" placeholder="name" autocomplete="off">
           </div>
           <div class="field">
-                <table>
+              <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">search</i></span>
+                </div>
+                <input type="text" class="form-control bg-dark border-0 text search-bar" id="myInput" placeholder="Search..">
+              </div>
+                <table class="table table-hover table-dark table-striped rounded mt-4">
+                  <thead>
                     <tr>
                         <th>State</th>
                         <th>Naam</th>
                         <th>Beschrijving</th>
                     </tr>
+                  </thead>
                   <?php
                   foreach ($permission->results() as $p) {
                   ?>
+                    <tbody id="myTable">
                     <tr>
                         <td><input type="checkbox" name="checkbox[]" value="<?php echo $p->id?>"></td>
                         <td><?php echo $p->user_permission_name; ?><td>
                         <td><?php echo $p->user_permission_description; ?></td>
                     </tr>
+                  </tbody>
                     <?php
                   }
                   ?>

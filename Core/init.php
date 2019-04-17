@@ -44,5 +44,8 @@ require_once 'Functions/sanitize.php';
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!--Curtom CSS-->
-<!--<link rel="stylesheet" type="text/css" href="CSS/main.css">-->
+<link rel="stylesheet" type="text/css" href="CSS/main.css">
 <link rel="stylesheet" type="text/css" href="CSS/trusted.css">
+
+<!--JS Table-->
+<script src="JS/table.js"></script>
