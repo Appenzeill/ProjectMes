@@ -16,10 +16,9 @@ $permission = Database::getInstance()->get(
 ?>
 <div class="col-md-10 content">
         <div class="panel-body">
-
         <form method="post">
-          <h1 class="text-center my-5">Nieuwe rol toevoegen</h1>
-          <hr class="bg-dark w-25 mb-5">
+            <h1 class="display-3 text-center">Nieuwe rol toevoegen</h1>
+            <hr class="bg-secondary w-50">
           <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">group_add</i></span>
