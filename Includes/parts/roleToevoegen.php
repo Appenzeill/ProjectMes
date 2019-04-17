@@ -15,23 +15,24 @@ $permission = Database::getInstance()->get(
 	]);
 ?>
 <div class="col-md-10 content">
-        <div class="panel-heading">
-            Role toevoegen
-        </div>
         <div class="panel-body">
 
         <form method="post">
-          <div class="field">
-                <h3>Nieuwe rol toevoegen:</h3>
-            <label for="username">Role naam</label>
-            <input type="text" name="permission_name" id="permission_name" placeholder="name" autocomplete="off">
+          <h1 class="text-center my-5">Nieuwe rol toevoegen</h1>
+          <hr class="bg-dark w-25 mb-5">
+          <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">group_add</i></span>
+            </div>
+            <input type="text" class="form-control bg-dark border-0 text search-bar" name="permission_name" id="permission_name" placeholder="Voer naam van nieuwe rol in" autocomplete="off">
+            <input class="border-0 bg-dark text-light" type="submit" value="Toevoegen">
           </div>
-              <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
-                <div class="input-group-prepend">
-                  <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">search</i></span>
-                </div>
-                <input type="text" class="form-control bg-dark border-0 text search-bar" id="myInput" placeholder="Search..">
-              </div>
+<!--              <div class="input-group col-md-4 col-sm-5 px-0 mt-4">-->
+<!--                <div class="input-group-prepend">-->
+<!--                  <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">search</i></span>-->
+<!--                </div>-->
+<!--                <input type="text" class="form-control bg-dark border-0 text search-bar" id="myInput" placeholder="Search..">-->
+<!--              </div>-->
                 <table class="table table-hover table-dark table-striped rounded mt-4">
                   <thead>
                     <tr>
@@ -46,15 +47,14 @@ $permission = Database::getInstance()->get(
                     <tbody id="myTable">
                     <tr>
                         <td><input type="checkbox" name="checkbox[]" value="<?php echo $p->id?>"></td>
-                        <td><?php echo $p->user_permission_name; ?><td>
-                        <td><?php echo $p->user_permission_description; ?></td>
+                        <td><?php echo $p->user_permission_name; ?></td>
+                        <td class="text-left"><?php echo $p->user_permission_description; ?></td>
                     </tr>
                   </tbody>
                     <?php
                   }
                   ?>
                 </table>
-          <input type="submit" value="Toevoegen">
         </form>
 <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
