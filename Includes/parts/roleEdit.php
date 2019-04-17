@@ -1,9 +1,7 @@
 <?php
 $errors = '';
 $nope = "";
-
 foreach ($user->results() as $user) {
-
 }
 
 $permission_name_filler    = "";
@@ -17,10 +15,7 @@ $selectRoleID       = "";
 
 if (Input::exists()) {
 	$selectRoleName     = Input::get('selectRole');
-} else {
-
 }
-
 $id = Session::get(Config::get('session/session_name'));
 
 $user = Database::getInstance()->get(
@@ -28,10 +23,6 @@ $user = Database::getInstance()->get(
 	[
 		'id', '=', $id
 	]);
-
-foreach ($user->results() as $user) {
-}
-
 
 /**
  * Rollen selecteren:
@@ -63,44 +54,106 @@ $query = Database::getInstance()->query(
 				if (!$rawpermissions->count()) {
 					echo "<br>Geen rol geselecteerd<br>";
 				} else {
-				    echo "<br> Aanpassen van rol: <b>" .$selectRoleName. "<br>";
+
+
+
+					$permissions = Database::getInstance()->query(
+						"SELECT  user_permissions.*, filtered_list.id as lists_id, filtered_list.role_name, filtered_list.user_permission_list_id, filtered_list.user_permission_id FROM user_permissions LEFT JOIN (SELECT * FROM user_permission_lists WHERE user_permission_lists.role_name =  '$selectRoleName') filtered_list
+                                ON user_permissions.id = filtered_list.user_permission_id
+                                ORDER BY user_permissions.id;");
+
+
+					echo "<br> Aanpassen van rol: <b>" .$selectRoleName. "<br>";
+//					echo "<input type='radio' value='aanpassen'> Selecteer als u wilt Aanpassen";
 					echo "<table>";
 					echo "<th>Status</th>";
 					echo "<th>Permission</th>";
 					echo "<th>Beschrijving</th>";
-					foreach ($rawpermissions->results() as $rp) {
-					    echo "<tr>";
-						$role_name = $rp->role_name;
-						$permission = Database::getInstance()->get(
-							'user_permissions',
-							[
-								'id', '=', $rp->user_permission_id
-							]);
+					foreach ($permissions->results() as $pid) {
+						echo "<tr>";
 
-						foreach ($permission->results() as $p) {
-							    ?>
-                                <td><input type="checkbox" value="<?php echo $p->id?>" <?php if ($p->id == $rp->user_permission_id) echo "checked='checked'"; ?>> </td>
-                                <?php
-							    echo "<td>".$p->user_permission_name ." </td>";
-							    echo "<td>".$p->user_permission_description. "</td>";
-                            }
-						}
+						?>
+                        <!--todo zorgen dat ze geselecteerd zijn als ze de permission hebben in de lijst user_permission_lists-->
+                        <td><input type="checkbox" name="checkbox[]" value"<?php echo $pid->id ?> <?php if ($pid->user_permission_id !== null) echo "checked='checked'"; ?>
+                            ></td>
+						<?php
 
-//						Database::getInstance()->update(
-//							'users',$id,
-//							[
-//								'role_id'  => $role_name
-//							]);
+//                        echo $p->user_permission_id;
+						echo "<td>".$pid->user_permission_name ." </td>";
+						echo "<td>".$pid->user_permission_description. "</td>";
+
 					}
-					echo "</tr>";
-					echo "</table>";
-//				}
+				}
+				echo "</tr>";
+				echo "</table>";
+
+
+
+
+
+
+				//					VERWIJDEREN MOGELIJK geen van deze werkt de middelste stuurt het wel en de onderste ook maar meer niet
+				//				if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				//					if(isset($_POST['aanpassen'])){
+				//						$checkboxes = isset( $_POST['checkbox'] ) ? $_POST['checkbox'] : array();
+				//						foreach ( $_POST['checkbox'] as $value ) {
+				//							Database::getInstance()->insert(
+				//								'user_permission_lists',
+				//								[
+				//									'role_name'          => $role_name,
+				//									'user_permission_id' => 3
+				//								]
+				//							);
+				//						}
+				//					} else{
+				//						echo "aanpassen niet gezet";
+				//					}
+				//				} else {
+				//					echo "geen post";
+				//				}
+
+				if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+					$checkboxes = isset( $_POST['checkbox'] ) ? $_POST['checkbox'] : array();
+					foreach ( $_POST['checkbox'] as $value ) {
+						Database::getInstance()->insert(
+							'user_permission_lists',
+							[
+								'role_name'          => "hii",
+								'user_permission_id' => 4
+							]
+						);
+					}
+				} else {
+					echo "probleem";
+				}
+
+
+
+
+
+
 				?>
+
         </div>
-		<?php echo $nope ?>
         <input type="hidden" name="token" value="<?php echo token::generate();?>">
         <input type="submit" value="Aanpassen">
         </form>
+		<?php
+		//        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		//	        $checkboxes = isset( $_POST['checkbox'] ) ? $_POST['checkbox'] : array();
+		//	        foreach ( $_POST['checkbox'] as $value ) {
+		//		        Database::getInstance()->insert(
+		//			        'user_permission_lists',
+		//			        [
+		//				        'role_name'          => "hii",
+		//				        'user_permission_id' => 2
+		//			        ]
+		//		        );
+		//	        }
+		//        } else {
+		//	        echo "probleem";
+		//        }
+		?>
         <br>
     </div>
 </div>
