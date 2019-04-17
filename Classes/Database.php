@@ -75,7 +75,7 @@ class Database {
 	}
 
 	public function  delete($table, $where) {
-		return $this->action('DELETE ',$table,$where);
+		return $this->action('DELETE * ',$table,$where);
 
 	}
 

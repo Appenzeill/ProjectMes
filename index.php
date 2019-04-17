@@ -63,6 +63,29 @@ if(isset($_GET['role_edit']))
 	include_once( "Includes/parts/role-dashboard/role-edit.php" );
 }
 
+/*
+ * Item dashboard
+ */
+// item dashboard pagina
+if(isset($_GET['item_dashboard']))
+{
+	include_once( "Includes/parts/item-dashboard/item-dashboard.php" );
+}
+// item aanmaken pagina
+if(isset($_GET['item_create']))
+{
+	include_once( "Includes/parts/item-dashboard/item-create.php" );
+}
+// item toevoegen pagina
+if(isset($_GET['item_add']))
+{
+	include_once( "Includes/parts/item-dashboard/item-add.php" );
+}
+// item aanpassen pagina
+if(isset($_GET['item_edit']))
+{
+	include_once( "Includes/parts/item-dashboard/item-edit.php" );
+}
 ?>
 
 
