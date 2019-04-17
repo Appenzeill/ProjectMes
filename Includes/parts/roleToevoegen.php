@@ -51,7 +51,6 @@ $permission = Database::getInstance()->get(
         </form>
 <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//                if (Input::exists()) {
                   if(isset($_POST["permission_name"])){
                     $checkboxes = isset( $_POST['checkbox'] ) ? $_POST['checkbox'] : array();
                     foreach ( $_POST['checkbox'] as $value ) {
