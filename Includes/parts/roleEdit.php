@@ -55,7 +55,7 @@ $query = Database::getInstance()->query(
 					echo "<br>Geen rol geselecteerd<br>";
 				} else {
 					$permissions = Database::getInstance()->query(
-						"SELECT  user_permissions.*, filtered_list.id as lists_id, filtered_list.role_name, filtered_list.user_permission_list_id, filtered_list.user_permission_id FROM user_permissions LEFT JOIN (SELECT * FROM user_permission_lists WHERE user_permission_lists.role_name =  '$selectRoleName') filtered_list
+						"SELECT  user_permissions.*, filtered_list.id as lists_id, filtered_list.role_name, filtered_list.user_permission_id FROM user_permissions LEFT JOIN (SELECT * FROM user_permission_lists WHERE user_permission_lists.role_name =  '$selectRoleName') filtered_list
                                 ON user_permissions.id = filtered_list.user_permission_id
                                 ORDER BY user_permissions.id;");
 					echo "<br> Aanpassen van rol: <b>" .$selectRoleName. "<br>";
@@ -91,6 +91,11 @@ $query = Database::getInstance()->query(
 							    ]
 						    );
 					    }
+					    echo "
+					    <script>
+    window.location.replace(\"http://127.0.0.1/Trusted/?rolename_expand=\");
+</script>
+					    ";
                     }
                 }
 				?>

@@ -14,8 +14,8 @@
         <input class="list-group-item list-group-item-action brand-item" type="submit" value="Dashboard">
       </form>
       <form method="get">
-        <input type="hidden" name="register_user">
-        <input class="list-group-item list-group-item-action brand-item" type="submit" value="Registreer gebruiker">
+        <input type="hidden" name="add_client">
+        <input class="list-group-item list-group-item-action brand-item" type="submit" value="Client toevoegen">
       </form>
       <form method="get">
         <input type="hidden" name="permission_dashboard">
