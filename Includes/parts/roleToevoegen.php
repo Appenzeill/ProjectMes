@@ -15,7 +15,6 @@ $permission = Database::getInstance()->get(
 	]);
 ?>
 <div class="col-md-10 content">
-    <div class="panel panel-default">
         <div class="panel-heading">
             Role toevoegen
         </div>
@@ -27,7 +26,6 @@ $permission = Database::getInstance()->get(
             <label for="username">Role naam</label>
             <input type="text" name="permission_name" id="permission_name" placeholder="name" autocomplete="off">
           </div>
-          <div class="field">
               <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
                 <div class="input-group-prepend">
                   <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">search</i></span>
@@ -56,7 +54,6 @@ $permission = Database::getInstance()->get(
                   }
                   ?>
                 </table>
-          </div>
           <input type="submit" value="Toevoegen">
         </form>
 <?php
@@ -78,7 +75,6 @@ $permission = Database::getInstance()->get(
             }
             ?>
         </div>
-    </div>
 </div>
 </div>
 <!--todo  reload voegt hij data toe aan de database
