@@ -56,36 +56,30 @@ if (!$user->count()) {
 	}
 ?>
 <body>
-<div class="login">
-    <div class="login-screen">
+<div class="login container d-flex h-75">
+    <div class="login-screen row justify-content-center align-self-center bg-dark">
         <div class="app-title">
-            <h1>Login</h1>
+            <h1 class="text-white mb-3">login</h1>
         </div>
+
         <form action="" method="post">
 
         <div class="login-form">
-            <div class="control-group">
-                <input type="email" name="email" data-validate="required email" id="login-name" placeholder="user@example.com" value="<?php echo Input::get('email')?>" />
-
+            <div class="form-group">
+                <input type="email" class="form-control bg-secondary text-white" name="email" data-validate="required email" id="login-name" placeholder="user@example.com" value="<?php echo Input::get('email')?>" />
                 <label class="login-field-icon fui-user" for="login-name"></label>
             </div>
 
-            <div class="control-group">
-                <input type="password" data-validate="required" name="password" placeholder="wachtwoord" id="login-pass" id="login-pass"/>
+            <div class="form-group">
+                <input type="password" class="form-control bg-secondary text-white" data-validate="required" name="password" placeholder="wachtwoord" id="login-pass" id="login-pass"/>
                 <label class="login-field-icon fui-lock" for="login-pass"></label>
             </div>
             <?php echo $error;?>
             <input type="hidden" name="token" value="<?php echo Token::generate()?>">
-            <input class="btn btn-primary btn-large btn-block" type="submit" name="submit"  value="Login" />
+            <input class="btn btn-brand" type="submit" name="submit"  value="Login" />
         </div>
     </div>
     </form>
 
 </div>
 </body>
-<style>
-    body {
-        font-family: Arial;
-        background-color: #3498DB;
-    }
-</style>
