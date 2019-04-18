@@ -483,3 +483,6 @@ h1.page-header {
 }
 
 
+.regular-checkbox {
+    appearance: none;
+}

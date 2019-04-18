@@ -66,13 +66,22 @@ class Database {
 		return $this->action('SELECT *',$table,$where);
 	}
 
-	public function join_permissions() {
+	public function join_permissions($table1, $row1, $table2, $row2, $id) {
 		return $this->action('
-				SELECT DISTINCT user_permission_lists.user_permission_list_id, user_permission_lists_name.user_permission_list_name
-				FROM user_permission_lists
-				INNER JOIN user_permission_lists_name
-			    ON user_permission_lists.user_permission_list_id=user_permission_lists_name.id; ');
+				SELECT DISTINCT '.$table1.'.'.$row1.','.$table2.'.'.$row2.'
+				FROM '.$table1.'
+				INNER JOIN '.$table2.'
+			    ON '.$table1.'.'.$row1.'='.$table2.'.'.$id.'; ');
 	}
+
+
+//	public function join_permissions() {
+//		return $this->action('
+//				SELECT DISTINCT user_permission_lists.user_permission_list_id, user_permission_lists_name.user_permission_list_name
+//				FROM user_permission_lists
+//				INNER JOIN user_permission_lists_name
+//			    ON user_permission_lists.user_permission_list_id=user_permission_lists_name.id; ');
+//	}
 
 	public function  delete($table, $where) {
 		return $this->action('DELETE * ',$table,$where);

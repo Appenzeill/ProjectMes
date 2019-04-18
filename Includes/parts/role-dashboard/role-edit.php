@@ -10,7 +10,7 @@ $permissions = Database::getInstance()->get(
 <div class="col-md-10 content">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Role toevoegen
+			Role aanpassen:
 		</div>
 		<div class="panel-body">
 			<form method="post">
@@ -20,12 +20,28 @@ $permissions = Database::getInstance()->get(
 
 				</div>
 				<div class="field">
-					<table>
-						<tr>
-							<th>State</th>
-							<th>Naam</th>
-							<th>Beschrijving</th>
-						</tr>
+                    <script>
+                        $(document).ready(function(){
+                            $("#myInput").on("keyup", function() {
+                                var value = $(this).val().toLowerCase();
+                                $("#myTable tr").filter(function() {
+                                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
+                            });
+                        });
+                    </script>
+                    <br>
+                    <input id="myInput" type="text" placeholder="Search..">
+
+					<table class="table">
+						<thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Naam</th>
+                            <th>Beschrijving</th>
+                        </tr>
+						</thead>
+                        <tbody id="myTable">
 						<?php
 						foreach ($permissions->results() as $permission) {
 							?>
@@ -37,6 +53,7 @@ $permissions = Database::getInstance()->get(
 							<?php
 						}
 						?>
+                        </tbody>
 					</table>
 				</div>
 				<input type="submit" value="Toevoegen">

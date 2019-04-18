@@ -15,13 +15,6 @@ if (Input::exists()) {
 	$email_filler       = Input::get('email');
 }
 
-
-
-
-
-
-
-
 ?>
 <div class="col-md-10 content">
     <div class="panel panel-default">

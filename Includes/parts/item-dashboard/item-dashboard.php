@@ -64,7 +64,6 @@ $items = Database::getInstance()->get(
 		?>
 			</tbody>
 		</table>
-
 		</div>
 	</div>
 </div>

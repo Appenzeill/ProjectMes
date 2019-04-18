@@ -76,9 +76,7 @@
 									</div>
 								</div>
 							</li>
-
 							<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</nav>
@@ -86,4 +84,3 @@
 			</div>
 		</div>
 	</div>
-
