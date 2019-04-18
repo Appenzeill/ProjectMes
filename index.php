@@ -39,6 +39,13 @@ if(isset($_GET['add_practitioner']))
 	include_once( "Includes/parts/addPractitioner.php" );
 }
 
+function add_disease(){
+}
+if(isset($_GET['add_disease']))
+{
+	include_once( "Includes/parts/addDisease.php" );
+}
+
 
 //function register_user(){
 //}

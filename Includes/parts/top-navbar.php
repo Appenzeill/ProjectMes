@@ -22,6 +22,10 @@
           <input class="list-group-item list-group-item-action brand-item" type="submit" value="Huisarts toevoegen">
       </form>
       <form method="get">
+          <input type="hidden" name="add_disease">
+          <input class="list-group-item list-group-item-action brand-item" type="submit" value="Aandoening toevoegen">
+      </form>
+      <form method="get">
         <input type="hidden" name="permission_dashboard">
         <input class="list-group-item list-group-item-action brand-item" type="submit" value="Permission dashboard">
       </form>
