@@ -60,6 +60,20 @@ if(isset($_GET['show_clients_insurance']))
 	include_once( "Includes/parts/showClientsInsurance.php" );
 }
 
+function show_clients_practitioner(){
+}
+if(isset($_GET['show_clients_practitioner']))
+{
+	include_once( "Includes/parts/showClientsPractitioner.php" );
+}
+
+function add_medication(){
+}
+if(isset($_GET['add_medication']))
+{
+	include_once( "Includes/parts/addMedication.php" );
+}
+
 
 //function register_user(){
 //}

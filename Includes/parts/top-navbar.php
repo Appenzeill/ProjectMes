@@ -30,8 +30,16 @@
           <input class="list-group-item list-group-item-action brand-item" type="submit" value="Zorgverzekering toevoegen">
       </form>
       <form method="get">
+          <input type="hidden" name="add_medication">
+          <input class="list-group-item list-group-item-action brand-item" type="submit" value="Medicatie toevoegen">
+      </form>
+      <form method="get">
           <input type="hidden" name="show_clients_insurance">
-          <input class="list-group-item list-group-item-action brand-item" type="submit" value="Eigen clients">
+          <input class="list-group-item list-group-item-action brand-item" type="submit" value="Eigen clients zorgverzekering">
+      </form>
+      <form method="get">
+          <input type="hidden" name="show_clients_practitioner">
+          <input class="list-group-item list-group-item-action brand-item" type="submit" value="Eigen clients huisarts">
       </form>
       <form method="get">
         <input type="hidden" name="permission_dashboard">
