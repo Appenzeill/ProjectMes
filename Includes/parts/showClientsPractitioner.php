@@ -33,6 +33,9 @@ $clients = Database::getInstance()->get(
     <table class="table table-hover table-responsive table-dark mt-4">
         <thead>
         <tr>
+            <th>Behandeling</th>
+            <th>Aandoening</th>
+            <th>Omschrijving</th>
             <th>Username</th>
             <th>First name</th>
             <th>Last name</th>
@@ -59,6 +62,9 @@ $clients = Database::getInstance()->get(
 		        <?php
 		        foreach ( $user->results() as $u ) {
 			        ?>
+                    <td><input type="button" value="Toevoegen">test</td>
+                    <td><input type="button" value="Toevoegen"></td>
+                    <td><input type="button" value="Toevoegen"></td>
                     <td><?php echo $u->username; ?></td>
                     <td><?php echo $u->first_name; ?></td>
                     <td><?php echo $u->last_name; ?></td>
