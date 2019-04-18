@@ -1,6 +1,14 @@
 <?php
 $errors = '';
 $nope = "";
+
+$id = Session::get(Config::get('session/session_name'));
+
+$user = Database::getInstance()->get(
+	'users',
+	[
+		'id', '=', $id
+	]);
 foreach ($user->results() as $user) {
 }
 
@@ -16,13 +24,7 @@ $selectRoleID       = "";
 if (Input::exists()) {
 	$selectRoleName     = Input::get('selectRole');
 }
-$id = Session::get(Config::get('session/session_name'));
 
-$user = Database::getInstance()->get(
-	'users',
-	[
-		'id', '=', $id
-	]);
 
 /**
  * Rollen selecteren:

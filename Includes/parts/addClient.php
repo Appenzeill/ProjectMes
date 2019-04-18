@@ -120,8 +120,8 @@ if (Input::exists()) {
         </div>
         <div class="form-group">
             <label for="username">Bloedgroep</label> <br>
-            <select name="bloedgroep" id="">
-                <option value="></option>
+            <select name="bloedgroep">
+                <option value=""></option>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
