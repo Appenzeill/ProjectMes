@@ -33,7 +33,7 @@ $query = Database::getInstance()->query(
 	"SELECT DISTINCT role_name FROM user_permission_lists");
 ?>
 
-<div class="col-md-4     content">
+<div class="col-md-4 content">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>Aanpassen van rechten</h3>
@@ -41,14 +41,19 @@ $query = Database::getInstance()->query(
         <div class="panel-body">
             <p>Selecteer de rol die u wilt aanpassen:</p>
             <form action="" method="post">
-                <select name="selectRole">
-                    <option value=""></option>
-					<?php
-					foreach ($query->results() as $query) {
-						echo "<option " . (isset($_POST["selectRole"]) && $query->role_name == $_POST['selectRole'] ? "selected" : "" ) . " value='$query->role_name' "; echo "> ".$query->role_name."</option>";
-					}
-					?>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" name="selectRole">
+                  <option selected>Choose...</option>
+                    <?php
+                    foreach ($query->results() as $query) {
+                        echo "<option " . (isset($_POST["selectRole"]) && $query->role_name == $_POST['selectRole'] ? "selected" : "" ) . " value='$query->role_name' "; echo "> ".$query->role_name."</option>";
+                    }
+                    ?>
                 </select>
+              </div>
 				<?php
 				$rawpermissions = Database::getInstance()->query(
 					"SELECT * FROM user_permission_lists WHERE role_name = '$selectRoleName'");

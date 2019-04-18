@@ -14,25 +14,18 @@ $permission = Database::getInstance()->get(
 		'id', '>=', 1
 	]);
 ?>
-<div class="col-md-10 content">
-        <div class="panel-body">
-        <form method="post">
-            <h1 class="display-3 text-center">Nieuwe rol toevoegen</h1>
+      <div class="jumbotron bg-dark text-white m-4 p-5">
+          <form method="post">
+            <h1 class="display-3 text-center mt-5">Rol toevoegen</h1>
             <hr class="bg-secondary w-50">
           <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
             <div class="input-group-prepend">
-              <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">group_add</i></span>
+              <span class="input-group-text bg-secondary text-white border-0" id="basic-addon1"><i class="material-icons">group_add</i></span>
             </div>
-            <input type="text" class="form-control bg-dark border-0 text search-bar" name="permission_name" id="permission_name" placeholder="Voer naam van nieuwe rol in" autocomplete="off">
-            <input class="border-0 bg-dark text-light" type="submit" value="Toevoegen">
+            <input type="text" class="form-control bg-secondary text-white border-0 text search-bar" name="permission_name" id="permission_name" placeholder="Voer naam van nieuwe rol in" autocomplete="off">
+            <input class="border-0 bg-secondary text-light" type="submit" value="Toevoegen">
           </div>
-<!--              <div class="input-group col-md-4 col-sm-5 px-0 mt-4">-->
-<!--                <div class="input-group-prepend">-->
-<!--                  <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">search</i></span>-->
-<!--                </div>-->
-<!--                <input type="text" class="form-control bg-dark border-0 text search-bar" id="myInput" placeholder="Search..">-->
-<!--              </div>-->
-                <table class="table table-hover table-dark table-striped rounded mt-4">
+                <table class="table table-hover table-dark mt-4">
                   <thead>
                     <tr>
                         <th>State</th>
