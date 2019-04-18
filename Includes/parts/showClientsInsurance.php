@@ -31,21 +31,6 @@ foreach ($clients->results() as $c) {
 		"SELECT * FROM users WHERE id=$c->user_id");
 	foreach ($user->results() as $u){
 	}
-
-//	echo $u->username;
-//	echo $u->first_name;
-//	echo $u->last_name;
-//	echo $u->email;
-//	echo $c->biological_gender;
-//	echo $c->bloodtype;
-//	echo $c->bsn;
-//	echo $c->date_of_birth;
-//	echo $c->adress;
-//	echo $c->city;
-//	echo $c->postal_code;
-//	echo $c->mobile_number;
-//	echo $c->insurance;
-//	echo $c->practitioner;
 } ?>
 <div class="jumbotron bg-dark text-white m-4 p-5">
     <h1 class="text-white text-center">Mijn clienten</h1>
