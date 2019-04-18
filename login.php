@@ -56,6 +56,8 @@ if (!$user->count()) {
 	}
 ?>
 
+
+<!--TODO tekst netjes neerzetten bij het invullen daarvan-->
 <body>
 <div class="container mt-5">
   <div class="row">
