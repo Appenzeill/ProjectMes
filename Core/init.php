@@ -52,6 +52,7 @@ require_once 'Functions/sanitize.php';
 <!--Curtom CSS-->
 <link rel="stylesheet" type="text/css" href="CSS/main.css">
 <link rel="stylesheet" type="text/css" href="CSS/trusted.css">
+<link rel="stylesheet" type="text/css" href="CSS/scrollbar.css">
 <link rel="stylesheet" type="text/css" href="CSS/login.css">
 
 <!--JS Table-->
