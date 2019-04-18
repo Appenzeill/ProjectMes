@@ -20,49 +20,40 @@ foreach ($user->results() as $user) {
 $error = "";
 ?>
 
+<div class="jumbotron bg-dark text-white m-4 p-5">
+    <div class="panel panel-default col-xl-6">
+        <h1 class="text-center">Account gegevens</h1>
+        <hr class="bg-secondary">
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="username">Gebruikersnaam</label>
+            <input type="text" name="username" class="form-control" id="username" value="<?php echo $user->username?>" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="password">Nieuw wachtwoord</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Nieuw wachtwoord">
+          </div>
+          <div class="form-group">
+            <label for="password">Herhaal nieuw wachtwoord</label>
+            <input type="password" class="form-control" name="password_check" id="password_check" placeholder="Nieuw wachtwoord">
+          </div>
+            <div class="form-group">
+                <label for="first_name">Voornaam</label>
+                <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $user->first_name?>">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Achternaam</label>
+                <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $user->last_name?>">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="form-control bg-secondary text-white border-0"><?php echo $user->email; ?></div>
+            </div>
+          <hr class="bg-secondary my-5">
+          <input type="hidden" name="token" value="<?php echo token::generate();?>">
+          <input style="background-color: #a415b4" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Update">
 
-<div class="col-md-10 content">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Account gegevens
-        </div>
-        <div class="panel-body">
-
-
-<form action="" method="post">
-	<div class="field">
-		<label for="username">Gebruikersnaam</label>
-		<input type="text" name="username" id="username" value="<?php echo $user->username?>" autocomplete="off">
-	</div>
-	<div class="field">
-		<label for="password">Nieuw wachtwoord</label>
-		<input type="password" name="password" id="password" placeholder="Nieuw wachtwoord">
-	</div>
-	<div class="field">
-		<label for="password">Herhaal nieuw wachtwoord</label>
-		<input type="password" name="password_check" id="password_check" placeholder="Nieuw wachtwoord">
-	</div>
-    <div class="field">
-        <label for="first_name">Voornaam</label>
-        <input type="text" name="first_name" id="first_name" value="<?php echo $user->first_name?>">
-    </div>
-    <div class="field">
-        <label for="first_name">Achternaam</label>
-        <input type="text" name="last_name" id="last_name" value="<?php echo $user->last_name?>">
-    </div>
-    <div class="field">
-        <label for="first_name">Email</label>
-	    <?php
-	    echo $user->email;
-	    ?>
-    </div>
-
-
-
-    <input type="hidden" name="token" value="<?php echo token::generate();?>">
-	<input type="submit" value="Update">
-
-</form>
+        </form>
 	        <?php
 	        if (Input::exists()) {
 		        $validate = new Validate();
@@ -94,7 +85,6 @@ $error = "";
 	        }
 	        ?>
             <br>
-        </div>
     </div>
 </div>
 </div>
