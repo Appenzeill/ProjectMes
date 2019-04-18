@@ -30,6 +30,10 @@
           <input class="list-group-item list-group-item-action brand-item" type="submit" value="Zorgverzekering toevoegen">
       </form>
       <form method="get">
+          <input type="hidden" name="add_pharmacy">
+          <input class="list-group-item list-group-item-action brand-item" type="submit" value="Appotheek toevoegen">
+      </form>
+      <form method="get">
           <input type="hidden" name="add_medication">
           <input class="list-group-item list-group-item-action brand-item" type="submit" value="Medicatie toevoegen">
       </form>
