@@ -60,7 +60,7 @@ if (Input::exists()) {
 
         }
 
-		$status = "<div class='alert alert-primary alert-dismissible fade show mx-4 mt-4' role='alert'>Nieuwe gebruiker toegevoegd!!
+		$status = "<div class='alert alert-primary alert-dismissible fade show mx-4 mt-4' role='alert'>Nieuwe client toegevoegd!!
                         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
                           <span aria-hidden=\"true\">&times;</span>
                        </button>

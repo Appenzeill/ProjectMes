@@ -32,6 +32,14 @@ if(isset($_GET['add_client']))
 	include_once( "Includes/parts/addClient.php" );
 }
 
+function add_practitioner(){
+}
+if(isset($_GET['add_practitioner']))
+{
+	include_once( "Includes/parts/addPractitioner.php" );
+}
+
+
 //function register_user(){
 //}
 //if(isset($_GET['register_user']))
