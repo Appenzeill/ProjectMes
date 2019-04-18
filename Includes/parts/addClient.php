@@ -103,10 +103,6 @@ if (Input::exists()) {
             <label for="first_name">Email</label>
             <input type="email" class="form-control" name="email" id="email" placeholder="voorbeeld@gmail.com" required>
         </div>
-
-
-
-
         <h1 class="display-3 text-center pt-5">Gegevens client</h1>
         <hr class="bg-secondary">
         <div class="form-group">
