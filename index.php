@@ -53,6 +53,14 @@ if(isset($_GET['add_insurance']))
 	include_once( "Includes/parts/addInsurance.php" );
 }
 
+function add_pharmacy(){
+}
+if(isset($_GET['add_pharmacy']))
+{
+	include_once( "Includes/parts/addPharmacy.php" );
+}
+
+
 function show_clients_insurance(){
 }
 if(isset($_GET['show_clients_insurance']))

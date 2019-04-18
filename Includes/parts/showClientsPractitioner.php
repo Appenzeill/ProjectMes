@@ -54,6 +54,8 @@ foreach ($clients->results() as $c) {
 	echo "<br>";
 	echo $c->practitioner;
 	echo "<br>";
+	echo "<hr>";
+
 }
 
 
