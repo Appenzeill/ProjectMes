@@ -85,8 +85,7 @@ if (Input::exists()) {
 
     <div class="form-group">
       <label for="username">Gebruikersnaam</label>
-      <input type="text" class="form-control" name="username" id="username" placeholder="Gebruikersnaam"
-             autocomplete="off" required>
+      <input type="text" class="form-control" name="username" id="username" placeholder="Gebruikersnaam" autocomplete="off" required>
     </div>
     <div class="form-group">
       <label for="password">Wachtwoord</label>
