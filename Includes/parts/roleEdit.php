@@ -99,8 +99,6 @@ $query = Database::getInstance()->query(
                     }
                 }
 				?>
-                <!--TODO zorgen dat hij refreshed nadat hij is aangepast (1 x) -->
-
         </div>
         <input type="submit" value="Aanpassen">
         </form>

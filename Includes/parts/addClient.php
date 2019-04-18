@@ -37,19 +37,29 @@ if (Input::exists()) {
 				'role' => "client",
 				'hash'      =>  $hashed_password,
 			]);
-		Database::getInstance()->create(
-			'user_data',
-			[
-				'biological_gender'  => Input::get('gender'),
-				'bloodtype'  =>  Input::get('bloedgroep'),
-				'date_of_birth'  =>  Input::get('geboortedatum'),
-				'adress'  =>  Input::get('adres'),
-				'city'  =>  Input::get('woonplaats'),
-				'postal_code' => Input::get('postcode'),
-				'mobile_number' => Input::get('telefoon'),
-				'insurance' => Input::get('zorgverzekering'),
-				'practitioner' => Input::get('huisarts'),
-			]);
+
+		$userIds =Database::getInstance()->query(
+		        "SELECT id FROM users ORDER BY id DESC LIMIT 1;"
+        );
+		foreach ($userIds->results() as $userid){
+			Database::getInstance()->create(
+				'user_data',
+				[
+					'user_id' => $userid->id,
+					'biological_gender'  => Input::get('gender'),
+					'BSN'  => Input::get('bsn'),
+					'bloodtype'  =>  Input::get('bloedgroep'),
+					'date_of_birth'  =>  Input::get('geboortedatum'),
+					'adress'  =>  Input::get('adres'),
+					'city'  =>  Input::get('woonplaats'),
+					'postal_code' => Input::get('postcode'),
+					'mobile_number' => Input::get('telefoon'),
+					'insurance' => Input::get('zorgverzekering'),
+					'practitioner' => Input::get('huisarts'),
+				]);
+
+        }
+
 		$status = "<div class='alert alert-primary alert-dismissible fade show mx-4 mt-4' role='alert'>Nieuwe gebruiker toegevoegd!!
                         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
                           <span aria-hidden=\"true\">&times;</span>
@@ -110,10 +120,19 @@ if (Input::exists()) {
         <div class="form-group">
             <label for="username">Bloedgroep</label> <br>
             <select name="bloedgroep" id="">
-                <option value="man">O</option>
-                <option value="vrouw">O+</option>
-                <option value="overig">O-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="password">BSN</label>
+            <input type="text" class="form-control" name="bsn" id="bsn" placeholder="BSN" required>
         </div>
         <div class="form-group">
             <label for="password">Geboortedatum</label>
