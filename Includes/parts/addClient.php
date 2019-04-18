@@ -60,7 +60,7 @@ if (Input::exists()) {
 
         }
 
-		$status = "<div class='alert alert-primary alert-dismissible fade show mx-4 mt-4' role='alert'>Nieuwe gebruiker toegevoegd!!
+		$status = "<div class='alert alert-primary alert-dismissible fade show mx-4 mt-4' role='alert'>Nieuwe client toegevoegd!!
                         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
                           <span aria-hidden=\"true\">&times;</span>
                        </button>
@@ -112,6 +112,7 @@ if (Input::exists()) {
         <div class="form-group">
             <label for="username">Gender</label> <br>
             <select name="gender" id="">
+                <option value=""></option>
                 <option value="man">Man</option>
                 <option value="vrouw">Vrouw</option>
                 <option value="overig">Overig</option>
@@ -120,6 +121,7 @@ if (Input::exists()) {
         <div class="form-group">
             <label for="username">Bloedgroep</label> <br>
             <select name="bloedgroep" id="">
+                <option value="></option>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
@@ -157,15 +159,29 @@ if (Input::exists()) {
         <div class="form-group">
             <label for="first_name">Zorgverzekering</label> <br>
             <select name="zorgverzekering" id="">
-                <option value="zorgverzekering0">HIER KOMEN DE ZORGVERZEKERING</option>
-                <option value="zorgverzekering1">HIER KOMEN DE ZORGVERZEKERING</option>
+                <option value=""></option>
+	            <?php
+	            $insurance = Database::getInstance()->query(
+		            "SELECT DISTINCT insurance FROM insurance");
+	            foreach ($insurance->results() as $i) {
+		            echo "<option value='$i->insurance' "; echo "> ".$i->insurance."</option>";
+	            }
+	            ?>
             </select>
         </div>
         <div class="form-group">
             <label for="first_name">Huisarts</label> <br>
-            <select name="huisarts" id="">
-                <option value="huisarts0">HIER KOMEN DE HUISARTSEN</option>
-                <option value="huisarts1">HIER KOMEN DE HUISARTSEN</option>
+
+            <select name="huisarts">
+                <option value=""></option>
+
+	            <?php
+	            $practitioner = Database::getInstance()->query(
+		            "SELECT DISTINCT practitioner FROM practitioner");
+	            foreach ($practitioner->results() as $p) {
+		            echo "<option value='$p->practitioner' "; echo "> ".$p->practitioner."</option>";
+	            }
+	            ?>
             </select>
         </div>
         <input class="btn btn-brand btn-block " type="submit" value="Register">

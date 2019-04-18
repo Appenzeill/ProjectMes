@@ -32,6 +32,28 @@ if(isset($_GET['add_client']))
 	include_once( "Includes/parts/addClient.php" );
 }
 
+function add_practitioner(){
+}
+if(isset($_GET['add_practitioner']))
+{
+	include_once( "Includes/parts/addPractitioner.php" );
+}
+
+function add_disease(){
+}
+if(isset($_GET['add_disease']))
+{
+	include_once( "Includes/parts/addDisease.php" );
+}
+
+function add_insurance(){
+}
+if(isset($_GET['add_insurance']))
+{
+	include_once( "Includes/parts/addInsurance.php" );
+}
+
+
 //function register_user(){
 //}
 //if(isset($_GET['register_user']))
