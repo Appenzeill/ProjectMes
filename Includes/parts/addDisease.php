@@ -16,7 +16,7 @@ if (Input::exists()) {
 				'disease' => Input::get('naam'),
 				'remark' => Input::get('omschrijving'),
 			]);
-		$status = "<div class='alert alert-primary alert-dismissible fade show mx-4 mt-4' role='alert'>Nieuwe huisarts toegevoegd!!
+		$status = "<div class='alert alert-primary alert-dismissible fade show mx-4 mt-4' role='alert'>Nieuwe aandoening toegevoegd!!
 	                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 	                          <span aria-hidden='true'>&times;</span>
 	                       </button>
@@ -35,7 +35,7 @@ if (Input::exists()) {
 
 <?php echo $status; ?>
 <div class="jumbotron bg-dark text-white m-4 p-5">
-	<h1 class="display-3 text-center">Aandoening toevoegen </h1>
+	<h1 class="display-3 text-center">Aandoening toevoegen</h1>
 	<hr class="bg-secondary w-50">
 	<form class="mx-auto" style="width: 500px;" action="" method="post">
 
