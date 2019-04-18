@@ -20,10 +20,10 @@ $permission = Database::getInstance()->get(
             <hr class="bg-secondary w-50">
           <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
             <div class="input-group-prepend">
-              <span class="input-group-text bg-secondary text-white border-0" id="basic-addon1"><i class="material-icons">group_add</i></span>
+              <span class="input-group-text bg-dark text-white border-0" id="basic-addon1"><i class="material-icons">group_add</i></span>
             </div>
-            <input type="text" style="height: 40px;" class="form-control bg-secondary text-white border-0 text search-bar" name="permission_name" id="permission_name" placeholder="Voer naam van nieuwe rol in" autocomplete="off">
-            <input class="border-0 bg-secondary text-light" type="submit" value="Toevoegen">
+            <input type="text" style="height: 40px;" class="form-control bg-dark text-white border-0 text search-bar" name="permission_name" id="permission_name" placeholder="Voer naam van nieuwe rol in" autocomplete="off">
+            <input class="border-0 bg-dark text-light" type="submit" value="Toevoegen">
           </div>
                 <table class="table table-hover table-dark mt-4">
                   <thead>
