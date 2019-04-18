@@ -15,22 +15,22 @@ $id = Session::get(Config::get('session/session_name'));
 //	[
 //		'insurance', '=', $insurance
 //	]);
-$insurance = Database::getInstance()->query(
-	"SELECT insurance FROM insurance WHERE user_id=$id");
-foreach ($insurance->results() as $i){
-}
-
-$clients = Database::getInstance()->get(
-	'user_data',
-	[
-		'insurance', '=', $i->insurance
-	]);
-
-foreach ($clients->results() as $c) {
-	$user = Database::getInstance()->query(
-		"SELECT * FROM users WHERE id=$c->user_id");
-	foreach ($user->results() as $u){
-	}
+//$insurance = Database::getInstance()->query(
+//	"SELECT insurance FROM insurance WHERE user_id=$id");
+//foreach ($insurance->results() as $i){
+//}
+//
+//$clients = Database::getInstance()->get(
+//	'user_data',
+//	[
+//		'insurance', '=', $i->insurance
+//	]);
+//
+//foreach ($clients->results() as $c) {
+//	$user = Database::getInstance()->query(
+//		"SELECT * FROM users WHERE id=$c->user_id");
+//	foreach ($user->results() as $u){
+//	}
 
 //	echo $u->username;
 //	echo $u->first_name;
@@ -46,7 +46,23 @@ foreach ($clients->results() as $c) {
 //	echo $c->mobile_number;
 //	echo $c->insurance;
 //	echo $c->practitioner;
-} ?>
+//}
+
+
+
+
+
+$insurance = Database::getInstance()->query(
+	"SELECT insurance FROM insurance WHERE user_id=$id");
+foreach ($insurance->results() as $i){
+}
+
+$clients = Database::getInstance()->get(
+	'user_data',
+	[
+		'insurance', '=', $i->insurance
+	]);
+?>
 <div class="jumbotron bg-dark text-white m-4 p-5">
     <h1 class="text-white text-center">Mijn clienten</h1>
     <div class="input-group col-md-4 col-sm-5 px-0 mt-4">
@@ -75,22 +91,36 @@ foreach ($clients->results() as $c) {
         </tr>
         </thead>
             <tbody id="myTable">
-            <tr>
-                <td><?php echo $u->username; ?></td>
-                <td><?php echo $u->first_name; ?></td>
-                <td><?php echo $u->last_name; ?></td>
-                <td><?php echo $u->email; ?></td>
-                <td><?php echo $c->biological_gender; ?></td>
-                <td><?php echo $c->bloodtype; ?></td>
-                <td><?php echo $c->bsn; ?></td>
-                <td><?php echo $c->date_of_birth; ?></td>
-                <td><?php echo $c->adress; ?></td>
-                <td><?php echo $c->city; ?></td>
-                <td><?php echo $c->postal_code; ?></td>
-                <td><?php echo $c->mobile_number; ?></td>
-                <td><?php echo $c->insurance; ?></td>
-                <td><?php echo $c->practitioner; ?></td>
+            <?php
+            foreach ($clients->results() as $c) {
+				$user = Database::getInstance()->query(
+					"SELECT * FROM users WHERE id=$c->user_id" );
+				?>
+		<tr>
+			<?php
+				foreach ( $user->results() as $u ) {
+				?>
+					<td><?php echo $u->username; ?></td>
+					<td><?php echo $u->first_name; ?></td>
+					<td><?php echo $u->last_name; ?></td>
+					<td><?php echo $u->email; ?></td>
+					<td><?php echo $c->biological_gender; ?></td>
+					<td><?php echo $c->bloodtype; ?></td>
+					<td><?php echo $c->bsn; ?></td>
+					<td><?php echo $c->date_of_birth; ?></td>
+					<td><?php echo $c->adress; ?></td>
+					<td><?php echo $c->city; ?></td>
+					<td><?php echo $c->postal_code; ?></td>
+					<td><?php echo $c->mobile_number; ?></td>
+					<td><?php echo $c->insurance; ?></td>
+					<td><?php echo $c->practitioner; ?></td>
+					<?php
+				}
+				?>
             </tr>
+	            <?php
+            }
+            ?>
             </tbody>
     </table>
 </div>
