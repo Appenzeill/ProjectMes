@@ -22,7 +22,7 @@ $permission = Database::getInstance()->get(
             <div class="input-group-prepend">
               <span class="input-group-text bg-secondary text-white border-0" id="basic-addon1"><i class="material-icons">group_add</i></span>
             </div>
-            <input type="text" class="form-control bg-secondary text-white border-0 text search-bar" name="permission_name" id="permission_name" placeholder="Voer naam van nieuwe rol in" autocomplete="off">
+            <input type="text" style="height: 40px;" class="form-control bg-secondary text-white border-0 text search-bar" name="permission_name" id="permission_name" placeholder="Voer naam van nieuwe rol in" autocomplete="off">
             <input class="border-0 bg-secondary text-light" type="submit" value="Toevoegen">
           </div>
                 <table class="table table-hover table-dark mt-4">
