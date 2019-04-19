@@ -1,5 +1,4 @@
-<div class="col-md-3 content"  >
-	<div class="panel panel-default">
+<div class="col-sm-8 content"  >
 		<div class="panel-heading" style="background-color: #3498DB; color: white;">
 			Rol dashboard /
 		</div>
@@ -18,7 +17,6 @@
 			</form>
 		</div>
 	</div>
-</div>
 <?php
 $items = Database::getInstance()->get(
 	'user_roles',
@@ -26,7 +24,7 @@ $items = Database::getInstance()->get(
 		'id', '>=', 1
 	]);
 ?>
-<div class="col-md-7 content"  >
+<div class="col-sm-4">
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: #3498DB; color: white;">
             Rollen:

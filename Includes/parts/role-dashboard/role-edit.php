@@ -6,20 +6,20 @@ $permissions = Database::getInstance()->get(
 		'id', '>=', 1
 	]);
 ?>
-                </select>
+</select>
 <div class="col-md-10 content">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			Role aanpassen:
-		</div>
-		<div class="panel-body">
-			<form method="post">
-				<div class="field">
-					<h3>Rol aanpassen:</h3>
-					<label for="username">Role naam</label>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Role aanpassen:
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <div class="field">
+                    <h3>Rol aanpassen:</h3>
+                    <label for="username">Role naam</label>
 
-				</div>
-				<div class="field">
+                </div>
+                <div class="field">
                     <script>
                         $(document).ready(function(){
                             $("#myInput").on("keyup", function() {
@@ -33,31 +33,31 @@ $permissions = Database::getInstance()->get(
                     <br>
                     <input id="myInput" type="text" placeholder="Search..">
 
-					<table class="table">
-						<thead>
+                    <table class="table">
+                        <thead>
                         <tr>
                             <th>State</th>
                             <th>Naam</th>
                             <th>Beschrijving</th>
                         </tr>
-						</thead>
+                        </thead>
                         <tbody id="myTable">
 						<?php
 						foreach ($permissions->results() as $permission) {
 							?>
-							<tr>
-								<td><input type="checkbox" name="checkbox[]" value="<?php echo $permission->id?>"></td>
-								<td><?php echo $permission->user_permission_name; ?></td>
-								<td><?php echo $permission->user_permission_description; ?></td>
-							</tr>
+                            <tr>
+                                <td><input type="checkbox" name="checkbox[]" value="<?php echo $permission->id?>"></td>
+                                <td><?php echo $permission->user_permission_name; ?></td>
+                                <td><?php echo $permission->user_permission_description; ?></td>
+                            </tr>
 							<?php
 						}
 						?>
                         </tbody>
-					</table>
-				</div>
-				<input type="submit" value="Toevoegen">
-			</form>
+                    </table>
+                </div>
+                <input type="submit" value="Toevoegen">
+            </form>
 			<?php
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				if (Input::exists()) {
@@ -75,6 +75,6 @@ $permissions = Database::getInstance()->get(
 				}
 			}
 			?>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>

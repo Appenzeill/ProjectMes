@@ -115,7 +115,9 @@ WHERE
 						[
 							'id', '=', $userasf->id
 						]);
+					echo $userasf->id."<br>";
 					foreach ($get_permission_id->results() as $get_permission_id) {
+						echo "<td>".$get_permission_id->user_permission_name ." </td>";
 						echo "<td>".$get_permission_id->user_permission_name ." </td>";
 						echo "<td>".$get_permission_id->user_permission_description. "</td>";
 					}

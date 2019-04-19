@@ -4,39 +4,7 @@ $nope = "";
 $permission_name_filler    = "";
 $permission_description_filler   = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (Input::get('user_role_name')) {
-		$validate = new Validate();
-		$validation = $validate->check($_POST,[
-			'user_role_name' => array( 'required' => true, 'unique' =>'user_roles' ),
-			'user_role_description' => array( 'required' => true, 'unique' =>'user_roles' )
-		]);
-		if ($validation->passed()) {
-			Database::getInstance()->insert(
-			'user_roles',
-			[
-				'user_role_name'            => Input::get('user_role_name'),
-				'user_role_description'     => Input::get('user_role_description')
-			]
-		    );
-			$user_role_ids = Database::getInstance()->get(
-				'user_roles',
-				[
-					'user_role_name', '=', Input::get('user_role_name')
-				]);
-			foreach ($user_role_ids->results() as $user_role_id) {
-				Database::getInstance()->insert(
-					'user_permission_lists',
-					[
-						'user_permission_list_id'       =>      $user_role_id->id,
-                            'user_permission_id'        =>      0
-					]
-				);
-			}
 
-	    }
-	}
-}
 if (Input::exists()) {
 	$permission_name_filler         = Input::get('permission_name');
 	$permission_description_filler  = Input::get('permission_description');
@@ -82,19 +50,54 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
                     <tbody>
                     <tr>
                         <td><label for="username">Role naam</label></td>
-                        <td><input type="text" name="user_role_name" id="user_role_name" placeholder="name" required="true" autocomplete="off"></td>
+                        <td><input type="text" name="user_role_name" id="user_role_name" placeholder="name"  autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td><label for="username">Role beschrijving</label></td>
-                        <td><input type="text" name="user_role_description" id="user_role_description" placeholder="name" required="true" autocomplete="off"></td>
+                        <td><input type="text" name="user_role_description" id="user_role_description" placeholder="name"  autocomplete="off"></td>
                     </tr>
                     </tbody>
                 </table>
 
 	            <?php echo "<br>".Input::get('user_role_name') ?>
 	            <?php echo "<br>".Input::get('user_role_description') ?>
-        </div>
+                <?php
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	                if (Input::get('user_role_name')) {
+		                $validate = new Validate();
+		                $validation = $validate->check($_POST,[
+			                'user_role_name' => array( 'required' => true, 'unique' =>'user_roles' ),
+			                'user_role_description' => array( 'required' => true, 'unique' =>'user_roles' )
+		                ]);
+		                if ($validation->passed()) {
+			                Database::getInstance()->insert(
+				                'user_roles',
+				                [
+					                'user_role_name'            => Input::get('user_role_name'),
+					                'user_role_description'     => Input::get('user_role_description')
+				                ]
+			                );
+			                $user_role_ids = Database::getInstance()->get(
+				                'user_roles',
+				                [
+					                'user_role_name', '=', Input::get('user_role_name')
+				                ]);
+			                foreach ($user_role_ids->results() as $user_role_id) {
+				                Database::getInstance()->insert(
+					                'user_permission_lists',
+					                [
+						                'user_permission_list_id'       =>      $user_role_id->id,
+						                'user_permission_id'        =>      0
+					                ]
+				                );
+			                }
 
+		                }
+	                }
+                }
+
+                ?>
+        </div>
         <input type="submit" value="Voeg toe">
         </form>
     </div>
@@ -122,7 +125,6 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
                     </select>
 					<?php
 				}
-                echo "<br><br>".$selectRoleName;
 				?>
         </div>
 		<?php echo $nope ?>
@@ -135,7 +137,6 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
         ?>
         <script>
             const addSelected = element => {
-                console.log("hello");
                 let value = $($("select[name='selectRole']")[0]).val();
                 $(element).val(value);
             }
@@ -161,8 +162,6 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
                     });
                 });
             </script>
-                <?php if ($selectRoleName) {
-?>
                     <br>
                     <input id="myInput" type="text" placeholder="Search..">
 
@@ -171,7 +170,7 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
                         <tr>
                             <th>State</th>
                             <th>Naam</th>
-                            <th>Beschrijving</th>t
+                            <th>Beschrijving</th>
                         </tr>
                         </thead>
                         <tbody id="myTable">
@@ -229,12 +228,11 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
 				                echo $permission_list1."<br>";
 
 				                echo $value."<br><hr>";
-				                echo "<script>
-		            window.location.replace(\"index.php?role_create=\");
-</script>";
+				                echo "  <script>
+		                                    window.location.replace(\"index.php?role_create=\");
+                                        </script>";
 			                }
 		                }
-	                }
                 }?>
             </div>
         </form>

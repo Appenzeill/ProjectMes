@@ -1,8 +1,8 @@
 <?php
 include_once("Core/init.php");
-include_once( "Includes/navigation/top-navbar.php" );
-include_once( "Includes/navigation/side-navbar.php" );
-
+include_once("Includes/html-parts/html/top.php");
+include_once("Includes/html-parts/navigation/side-navbar.php");
+include_once("Includes/html-parts/navigation/top-navbar.php");
 $user = Database::getInstance()->get(
 	'users',
 	[
@@ -16,18 +16,17 @@ if (!$user->count()) {
 </script>
 ";
 }
+?>
 
-if(isset($_GET['get_users']))
+<?php
+if(isset($_GET['start_screen']))
 {
 	include_once("Includes/parts/dashboard.php");
 }
-
 if(isset($_GET['register_permission']))
 {
 	include_once("Includes/parts/permission-add.php");
 }
-
-
 
 if(isset($_GET['register_user']))
 {
@@ -86,6 +85,10 @@ if(isset($_GET['item_edit']))
 {
 	include_once( "Includes/parts/item-dashboard/item-edit.php" );
 }
-?>
 
+
+
+include_once("Includes/html-parts/html/bottom.php");
+
+?>
 
