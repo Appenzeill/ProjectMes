@@ -117,6 +117,30 @@ if(isset($_GET['rolename_expand']))
 {
 	include_once( "Includes/parts/roleEdit.php" );
 }
+
+function add_therapy_client(){
+}
+if(isset($_GET['add_therapy_client']))
+{
+	include_once( "Includes/parts/addTherapyClient.php" );
+}
+
+function add_disease_client(){
+}
+if(isset($_GET['add_disease_client']))
+{
+	include_once( "Includes/parts/addDiseaseClient.php" );
+}
+
+function add_description_client(){
+}
+if(isset($_GET['add_description_client']))
+{
+	include_once( "Includes/parts/addDescriptionClient.php" );
+}
+
+
+
 ?>
 
 

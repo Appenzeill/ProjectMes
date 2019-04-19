@@ -62,9 +62,9 @@ $clients = Database::getInstance()->get(
 		        <?php
 		        foreach ( $user->results() as $u ) {
 			        ?>
-                    <td><input type="button" value="Toevoegen">test</td>
-                    <td><input type="button" value="Toevoegen"></td>
-                    <td><input type="button" value="Toevoegen"></td>
+                    <td><input type="button" value="Toevoegen" onclick="window.location.href = 'index.php?add_therapy_client=&user_id=<?php echo $c->user_id ?>'"></td>
+                    <td><input type="button" value="Toevoegen" onclick="window.location.href = 'index.php?add_disease_client=&user_id=<?php echo $c->user_id ?>'"></td>
+                    <td><input type="button" value="Toevoegen" onclick="window.location.href = 'index.php?add_description_client=&user_id=<?php echo $c->user_id ?>'"></td>
                     <td><?php echo $u->username; ?></td>
                     <td><?php echo $u->first_name; ?></td>
                     <td><?php echo $u->last_name; ?></td>

@@ -18,6 +18,15 @@ foreach ($user->results() as $user) {
 //	Zocht dat je met $user-> dingen kan ophalen
 }
 $error = "";
+
+
+$aandoeingen = Database::getInstance()->get(
+    'disease',
+    [
+        'user_id', '=', $id
+    ]);
+
+
 ?>
 
 <div class="jumbotron bg-dark text-white m-4 p-5">
@@ -50,10 +59,67 @@ $error = "";
               <div class="form-control bg-secondary text-white border-0"><?php echo $user->email; ?></div>
             </div>
           <hr class="bg-secondary my-5">
-          <input type="hidden" name="token" value="<?php echo token::generate();?>">
+<!--          <input type="hidden" name="token" value="--><?php //echo token::generate();?><!--">-->
           <input style="background-color: #a415b4" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Update">
-
         </form>
+        <div class="form-group">
+            <label for="username">Aandoeningen</label>
+
+
+
+            <table>
+                <tr>
+                    <th>Datum</th>
+                    <th>Door</th>
+                    <th>Aandoeing</th>
+                </tr>
+	            <?php
+	            foreach ($aandoeingen->results() as $a) {
+		            $aandoening = Database::getInstance()->query(
+			            "SELECT * FROM disease WHERE user_id=$a->user_id" );
+		            ?>
+                    <tr>
+                        <?php
+                        foreach ($aandoening->results() as $test){
+                            ?>
+                            <td><?php echo "test";?></td>
+                        <?php
+                        }
+                        ?>
+                        <td><?php echo $test->disease ?></td>
+<!--			            --><?php
+//			            foreach ($aandoening->results() as $test ) {
+//				            ?>
+<!--                            <td>--><?php //echo $test->disease; ?><!--</td>-->
+<!--				            --><?php
+//			            }
+//			            ?>
+                    </tr>
+		            <?php
+	            }
+	            ?>
+            </table>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="username">Omschrijvingen</label>
+            <input type="text" name="username" class="form-control" id="username" value="<?php echo $user->username?>" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="username">Behandelingen</label>
+            <input type="text" name="username" class="form-control" id="username" value="<?php echo $user->username?>" autocomplete="off">
+        </div>
+
 	        <?php
 	        if (Input::exists()) {
 		        $validate = new Validate();
