@@ -35,27 +35,27 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
 ?>
 
 <div class="col-md-4 content">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: #3498DB; color: white;">
-            Voeg rol toevoegen aan gebruiker.
-        </div>
-        <div class="panel-body">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #3498DB; color: white;">
+			Voeg rol toevoegen aan gebruiker.
+		</div>
+		<div class="panel-body">
 			<?php echo $data1; ?>
-            <form action="" method="post">
-                <br>
+			<form action="" method="post">
+				<br>
 				<?php
 				if (!$query->count()) {
 					echo "Geen gebruiker";
 				} else {
-				?>
-                <select name="selectRole">
-                    <?php
-					foreach ($query->results() as $query) {
-						echo "<option value='$query->user_role_name' "; if($user->role_id == $query->user_permission_list_id) { echo 'selected="selected"';} echo "> ".$query->user_role_name."</option>";
-					    }
 					?>
-                </select>
-				<?php
+					<select name="selectRole">
+						<?php
+						foreach ($query->results() as $query) {
+							echo "<option value='$query->user_role_name' "; if($user->role_id == $query->user_permission_list_id) { echo 'selected="selected"';} echo "> ".$query->user_role_name."</option>";
+						}
+						?>
+					</select>
+					<?php
 				}
 
 				$query_id = Database::getInstance()->query(
@@ -83,20 +83,20 @@ WHERE
 					}
 				}
 				?>
-        </div>
+		</div>
 		<?php echo $nope ?>
-        <input type="hidden" name="token" value="<?php echo token::generate();?>">
-        <input type="submit" value="Voeg toe">
-        </form>
-        <br>
-    </div>
+		<input type="hidden" name="token" value="<?php echo token::generate();?>">
+		<input type="submit" value="Voeg toe">
+		</form>
+		<br>
+	</div>
 </div>
 <div class="col-md-6 content"  >
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: #3498DB; color: white;">
-            Rechten van gebruiker
-        </div>
-        <div class="panel-body">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="background-color: #3498DB; color: white;">
+			Rechten van gebruiker
+		</div>
+		<div class="panel-body">
 			<?php
 			$userasf = Database::getInstance()->get(
 				'user_permission_lists',
@@ -127,7 +127,7 @@ WHERE
 				echo $selectRoleName;
 			}
 			?>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 </div>

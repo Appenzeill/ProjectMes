@@ -78,6 +78,7 @@ if (Input::exists()) {
 				<?php echo $error;?>
                 <input type="hidden" name="token" value="<?php echo Token::generate()?>">
                 <input class="btn btn-primary btn-large btn-block" type="submit" name="submit"  value="Login" />
+                <a href="login-client.php">Inloggen als cliënt</a>
             </div>
     </div>
     </form>

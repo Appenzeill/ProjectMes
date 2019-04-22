@@ -1,6 +1,7 @@
 <?php
 $errors = '';
 $nope = "";
+
 foreach ($user->results() as $user) {
 }
    if( $_GET["client_edit"] || $_GET["age"] ) {
@@ -27,9 +28,10 @@ foreach ($clients->results() as $client) {
 	$phone_filler           =   $client->mobile_number;
 	$insurance_filler       =   $client->insurance;
 	$huisarts_filler        =   $client->huisarts;
+	$opmerking_filler       =   $client->information;
 }
 
-if (Input::exists()) {
+if (Input::get('first_name')) {
 	$firstname_filler       =   Input::get('first_name');
 	$infix_filer            =   Input::get('infix');
 	$lastname_filler        =   Input::get('last_name');
@@ -45,10 +47,10 @@ if (Input::exists()) {
 	$phone_filler           =   Input::get('mobile_number');
 	$insurance_filler       =   Input::get('insurance');
 	$huisarts_filler        =   Input::get('huisarts');
+	$condition              =   Input::get('condition');
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (Input::exists()) {
+	if (Input::get('first_name')) {
 		$validate = new Validate();
 		$validation = $validate->check($_POST,[
 			'first_name' => array( 'required' => true, 'min' =>'1' ),
@@ -79,7 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					'bloodtype'         =>  Input::get('bloodtype'),
 					'bsn_number'        =>  Input::get('bsn_number'),
 					'polis_number'      =>  Input::get('polis_number'),
-					'insurance'         =>  Input::get('insurance')
+					'insurance'         =>  Input::get('insurance'),
+					'huisarts'          =>  Input::get('huisarts')
 				]));
 		} else
 
@@ -90,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			}
 		}
-	}
 }
 ?>
 
@@ -223,13 +225,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<label class="input-group-text" for="huisarts">Huisarts</label>
 		</div>
 		<select name="huisarts" class="custom-select" id="huisarts">
-			<option selected>Kies...</option>
 			<?php
-			$practitioner = Database::getInstance()->query(
-				"SELECT DISTINCT practitioner FROM practitioner");
-			foreach ($practitioner->results() as $p) {
-				echo "<option value='$p->practitioner' ";
-				echo "> " . $p->practitioner . "</option>";
+			$huisartsen = Database::getInstance()->get(
+				'users',
+				[
+					'role_id', '>=', 2
+				]);
+			foreach ($huisartsen->results() as $huisarts) {
+				echo "<option value='$huisarts->id' ";
+				echo "> " .$huisarts->id." " . $huisarts->first_name ." ".$huisarts->infix." ".$huisarts->last_name. "</option>";
 			}
 			?>
 		</select>
@@ -241,18 +245,117 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 <div class="col-md-6" >
-	<h1 class="display-5 text-center pt-5">Allergiëen</h1>
+	<h1 class="display-5 text-center pt-5">Aandoeningen</h1>
 	<hr class="bg-secondary">
-	<form action="" method="post">
-	<div class="form-group">
-		<label for="first_name">Adres</label>
-		<input type="text" class="form-control" name="adres" id="adres" placeholder="Adres" required>
+	<div class="row">
+		<div class="col-md-12" >
+<?php
+$conditions = Database::getInstance()->get(
+	'client_conditions',
+	[
+		'id', '>=', 1
+	]);
+?>
+            <form action="" method="post">
+            <div class="form-group">
+                Voeg aandoening toe:<br>
+                    <select name="condition">
+						<?php
+						foreach ($conditions->results() as $condition) {
+							echo "<option class=\"form-control\" value='$condition->id' "; echo "> ".$condition->condition_name."</option>";
+						}
+						?>
+                    </select>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Voeg toe">
+                <?php
+                if (Input::get('condition')) {
+			Database::getInstance()->insert(
+				'client_condition_list',
+				[
+					'condition_id'  =>  Input::get('condition'),
+					'client_id'  =>  $user_id,
+				]);
+}
+                ?>
+		</div>
 	</div>
-		<input type="submit" class="btn btn-primary" value="Voeg toe">
-	</form>
+
+	<div class="row">
+		<div class="col-md-12" >
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Aandoening naam:</th>
+                    <th>Aandoening beschrijving:</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <script>
+                    $(document).ready(function(){
+                        $("#myInput").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
+                <br>
+                <input id="myInput" type="text" placeholder="Search..">
+                <br><br>
+				<?php
+				$aandoeningen = Database::getInstance()->query(
+					'SELECT client_condition_list.client_id, client_condition_list.condition_id, client_conditions.id,client_conditions.condition_name, client_conditions.condition_description
+FROM client_conditions 
+INNER JOIN client_condition_list ON client_condition_list.condition_id=client_conditions.id WHERE client_id = '.$user_id);
+				foreach ($aandoeningen->results() as $aandoening) {
+					?>
+                    <tr>
+                        <td><?php echo $aandoening->condition_name; ?></td>
+                        <td><?php echo $aandoening->condition_description; ?></td>
+                    </tr>
+					<?php
+				}
+				?>
+                </tbody>
+            </table>
+		</div>
+	</div>
+    </form>
+
 </div>
 <div class="col-md-6" >
-	<h1 class="display-5 text-center pt-5">Aandoeningen</h1>
+	<h1 class="display-5 text-center pt-5">Opmerkingen / beschrijving</h1>
+	<hr class="bg-secondary">
+	<form action="" method="post">
+		<div class="form-group">
+			<label for="first_name">Opmerking</label>
+			<input type="text" class="form-control" name="opmerking" id="opmerking" placeholder="Opmerking over cliënt" value="<?php echo $opmerking_filler?>" required>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Voeg toe">
+        <?php
+        $opmerkingen = Database::getInstance()->get(
+	        'clients',
+	        [
+		        'id', '=', $user_id
+	        ]);
+        foreach ($opmerkingen->results() as $opmerking) {
+	        $opmerking_filler       =   $opmerking->information;
+        }
+        if (Input::get('opmerking')) {
+	        $opmerking_filler = Input::get( 'opmerking' );
+	        Database::getInstance()->update(
+		        'clients',$user_id,
+		        [
+			        'information'        =>  Input::get('opmerking'),
+		        ]);
+        }
+        ?>
+	</form>
+</div>
+<div class="col-md-12" >
+	<h1 class="display-5 text-center pt-5">Behandeling</h1>
 	<hr class="bg-secondary">
 	<form action="" method="post">
 		<div class="form-group">
@@ -262,16 +365,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<input type="submit" class="btn btn-primary" value="Voeg toe">
 	</form>
 </div>
-<div class="col-md-12" >
-	<h1 class="display-5 text-center pt-5">Opmerkingen</h1>
-	<hr class="bg-secondary">
-	<div class="form-group">
-		<label for="first_name">Adres</label>
-		<input type="text" class="form-control" name="adres" id="adres" placeholder="Adres" required>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-</div>
+

@@ -1,10 +1,9 @@
 
 <div class="col-md-4">
-	<h1 class="display-5 text-center pt-5">Rollen menu</h1>
+	<h1 class="display-5 text-center pt-5">Gebruiker menu</h1>
 	<hr class="bg-secondary">
-	<a href="?role_add=" class="btn btn-primary">Rol toevoegen aan gebruiker</a>
+	<a href="?user_create=" class="btn btn-primary">Nieuwe Dashboard</a>
 	<hr>
-	<a href="?role_create=" class="btn btn-primary">Rol aanpassen of aanmaken</a>
 </div>
 
 

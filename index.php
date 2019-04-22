@@ -3,6 +3,7 @@ include_once("Core/init.php");
 include_once("Includes/html-parts/html/top.php");
 include_once("Includes/html-parts/navigation/side-navbar.php");
 include_once("Includes/html-parts/navigation/top-navbar.php");
+include_once("Includes/html-parts/navigation/top-navbar.php");
 $user = Database::getInstance()->get(
 	'users',
 	[
@@ -29,7 +30,7 @@ if(isset($_GET['start_screen']))
 {
 	include_once("Includes/parts/dashboard.php");
 }
-if(isset($_GET['register_permission']))
+if(isset($_GET['permission_dashboard']))
 {
 	include_once("Includes/parts/permission-add.php");
 }
@@ -116,7 +117,22 @@ if(isset($_GET['condition_dashboard']))
 {
 	include_once( "Includes/parts/condition-dashboard/condition-dashboard.php" );
 }
-
+/*
+ * Gebruikers dashboard
+ */
+// Aandoeningen dashboard pagina
+if(isset($_GET['user_dashboard']))
+{
+	include_once( "Includes/parts/user-dashboard/user-dashboard.php" );
+}
+if(isset($_GET['user_create']))
+{
+	include_once( "Includes/parts/user-dashboard/user-create.php" );
+}
+if(isset($_GET['user_role_edit']))
+{
+	include_once( "Includes/parts/user-dashboard/user-create.php" );
+}
 ?>
         </div>
     </div>

@@ -212,17 +212,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<div class="input-group-prepend">
 			<label class="input-group-text" for="huisarts">Huisarts</label>
 		</div>
-		<select name="huisarts" class="custom-select" id="huisarts">
-			<option selected>Kies...</option>
+        <select name="huisarts" class="custom-select" id="huisarts">
 			<?php
-			$practitioner = Database::getInstance()->query(
-				"SELECT DISTINCT practitioner FROM practitioner");
-			foreach ($practitioner->results() as $p) {
-				echo "<option value='$p->practitioner' ";
-				echo "> " . $p->practitioner . "</option>";
+			$huisartsen = Database::getInstance()->get(
+				'users',
+				[
+					'role_id', '>=', 2
+				]);
+			foreach ($huisartsen->results() as $huisarts) {
+				echo "<option value='$huisarts->user_id' ";
+				echo "> " . $huisarts->first_name ." ".$huisarts->infix." ".$huisarts->last_name. "</option>";
 			}
 			?>
-		</select>
+        </select>
+    </div>
 	</div>
 </div>
 <div class="col-md-12">

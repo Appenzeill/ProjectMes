@@ -16,7 +16,7 @@
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
-	<link href="CSS/simple-sidebar.css" rel="stylesheet">
+    <link href="CSS/main.css" rel="stylesheet">
 
 </head>
 
