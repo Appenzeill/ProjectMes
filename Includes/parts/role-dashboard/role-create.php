@@ -40,10 +40,6 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
 
 
 <div class="col-md-4  content">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: #3498DB; color: white;">
-            Voeg rol toevoegen aan gebruiker.
-        </div>
         <div class="panel-body">
             <form action="" method="post">
                 <table class="table">
@@ -101,13 +97,8 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
         <input type="submit" value="Voeg toe">
         </form>
     </div>
-</div>
 
 <div class="col-md-6  content">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: #3498DB; color: white;">
-            Voeg rol toevoegen aan gebruiker.
-        </div>
         <div class="panel-body">
             <form action="" method="post">
                 <br>
@@ -237,6 +228,5 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
             </div>
         </form>
         <br>
-    </div>
 </div>
 

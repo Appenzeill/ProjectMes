@@ -18,7 +18,13 @@ if (!$user->count()) {
 }
 ?>
 
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
 <?php
+/*
+ * Dashboard wanneer applicatie opstart.
+ */
 if(isset($_GET['start_screen']))
 {
 	include_once("Includes/parts/dashboard.php");
@@ -27,12 +33,28 @@ if(isset($_GET['register_permission']))
 {
 	include_once("Includes/parts/permission-add.php");
 }
-
+/*
+ * Cliënt registeren.
+ */
 if(isset($_GET['register_user']))
 {
 	include_once("Includes/parts/register.php");
 }
-
+if(isset($_GET['client_dashboard']))
+{
+	include_once("Includes/parts/client-dashboard/client-dashboard.php");
+}
+if(isset($_GET['client_new']))
+{
+	include_once("Includes/parts/client-dashboard/client-new.php");
+}
+if(isset($_GET['client_edit']))
+{
+	include_once("Includes/parts/client-dashboard/client-edit.php");
+}
+/*
+ * Cliënt aanpassen.
+ */
 if(isset($_GET['modify_user']))
 {
 	include_once("Includes/parts/modify.php");
@@ -86,6 +108,21 @@ if(isset($_GET['item_edit']))
 	include_once( "Includes/parts/item-dashboard/item-edit.php" );
 }
 
+/*
+ * Aandoeningen dashboard
+ */
+// Aandoeningen dashboard pagina
+if(isset($_GET['condition_dashboard']))
+{
+	include_once( "Includes/parts/condition-dashboard/condition-dashboard.php" );
+}
+
+?>
+        </div>
+    </div>
+
+</div>
+<?php
 
 
 include_once("Includes/html-parts/html/bottom.php");

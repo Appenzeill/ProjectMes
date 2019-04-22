@@ -44,7 +44,7 @@ if (Input::exists()) {
 				if ($login) {
 					echo "
 		            <script>
-		            window.location.replace(\"index.php?get_users=\");
+		            window.location.replace(\"index.php?start_screen=\");
                     </script>
                     ";
 				}

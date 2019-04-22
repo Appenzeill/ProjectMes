@@ -1,6 +1,7 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+    <a href="javascript:history.go(-1)">Ga terug</a>
+
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,7 +23,7 @@
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="logout.php">Uitloggen</a>
                 </div>
             </li>
         </ul>

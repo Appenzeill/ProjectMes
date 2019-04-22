@@ -15,7 +15,7 @@ class Validate {
 				$value = $source[$item];
 
 				if ($rule === 'required' && empty($value)) {
-					$this->addError("{$item} is required");
+					$this->addError("{$item} is vereist");
 				} else if (!empty($value)){
 					switch ($rule) {
 						case 'min';

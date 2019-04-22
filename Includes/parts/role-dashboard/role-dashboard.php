@@ -1,22 +1,13 @@
-<div class="col-sm-8 content"  >
-		<div class="panel-heading" style="background-color: #3498DB; color: white;">
-			Rol dashboard /
-		</div>
-		<div class="panel-body">
-			<form method="get">
-				<input type="hidden" name="role_add">
-				<input type="submit" value="Rol toevoegen aan gebruiker" class="standard-input">
-			</form>
-			<form method="get">
-				<input type="hidden" name="role_create">
-				<input type="submit" value="Rol aanmaken" class="standard-input">
-			</form>
-			<form method="get">
-				<input type="hidden" name="role_edit">
-				<input type="submit" value="Rol aanpassen" class="standard-input">
-			</form>
-		</div>
-	</div>
+
+<div class="col-md-4">
+    <h1 class="display-5 text-center pt-5">Rollen menu</h1>
+    <hr class="bg-secondary">
+    <a href="?role_add=" class="btn btn-primary">Rol toevoegen aan gebruiker</a>
+    <hr>
+    <a href="?role_create=" class="btn btn-primary">Rol aanpassen of aanmaken</a>
+</div>
+
+
 <?php
 $items = Database::getInstance()->get(
 	'user_roles',
@@ -24,11 +15,9 @@ $items = Database::getInstance()->get(
 		'id', '>=', 1
 	]);
 ?>
-<div class="col-sm-4">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: #3498DB; color: white;">
-            Rollen:
-        </div>
+<div class="col-md-8">
+    <h1 class="display-5 text-center pt-5">Rollen gegevens</h1>
+    <hr class="bg-secondary">
         <script>
             $(document).ready(function(){
                 $("#myInput").on("keyup", function() {
@@ -63,6 +52,5 @@ $items = Database::getInstance()->get(
 			?>
             </tbody>
         </table>
-    </div>
 </div>
 </div>

@@ -79,3 +79,9 @@ hr {
 .center {
     text-align: center;
 }
+
+.submit_buttom {
+    background: #3498DB;
+    color: white;
+}
+

@@ -24,10 +24,7 @@ if (Input::exists()) {
         <div class="panel-body">
 
             <form action="" method="post">
-                <div class="field">
-                    <label for="username">Gebruikersnaam</label>
-                    <input type="text" name="username" id="username" value="<?php echo $username_filler?>" autocomplete="off">
-                </div>
+
                 <div class="field">
                     <label for="password">Nieuw wachtwoord:</label>
                     <input type="password" name="password" id="password" value="" placeholder="Wachtwoord">
@@ -54,7 +51,6 @@ if (Input::exists()) {
 						$validate = new Validate();
 						$validation = $validate->check($_POST,[
 							'email' => array( 'required' => true, 'unique' =>'users' ),
-							'username' => array( 'required' => true, 'unique' =>'users','min' => 2 ),
 						]);
 						if ($validation->passed()) {
 							$hashed_password = password_hash(Input::get('password'), PASSWORD_DEFAULT);
@@ -62,7 +58,6 @@ if (Input::exists()) {
 							Database::getInstance()->insert(
 								'users',
 								[
-									'username'  => Input::get('username'),
 									'first_name'  =>  Input::get('first_name'),
 									'last_name'  =>  Input::get('last_name'),
 									'email'  =>  Input::get('email'),
