@@ -4,6 +4,10 @@ include_once("Includes/html-parts/html/top.php");
 include_once("Includes/html-parts/navigation/side-navbar.php");
 include_once("Includes/html-parts/navigation/top-navbar.php");
 include_once("Includes/html-parts/navigation/top-navbar.php");
+
+echo "<script type=\"text/javascript\">
+    setTimeout(function() { window.location.href = \"logout.php\"; }, 300000); // 300000 = 5 min
+</script>";
 $user = Database::getInstance()->get(
 	'users',
 	[
@@ -59,6 +63,10 @@ if(isset($_GET['client_edit']))
 if(isset($_GET['modify_user']))
 {
 	include_once("Includes/parts/modify.php");
+}
+if(isset($_GET['medication_delete']))
+{
+	include_once("Includes/parts/medication-dashboard/medication_delete.php");
 }
 
 /*
@@ -136,10 +144,12 @@ if(isset($_GET['user_role_edit']))
 ?>
         </div>
     </div>
-
 </div>
 <?php
 
+$calendar = new Calendar();
+
+echo $calendar->show();
 
 include_once("Includes/html-parts/html/bottom.php");
 

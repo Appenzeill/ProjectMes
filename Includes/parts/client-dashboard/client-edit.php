@@ -26,7 +26,7 @@ foreach ($clients->results() as $client) {
 	$polis_number_filler    =   $client->polis_number;
 	$birth_day_filler       =   $client->date_of_birth;
 	$phone_filler           =   $client->mobile_number;
-	$insurance_filler       =   $client->insurance;
+	$verzekering_filler     =   $client->insurance;
 	$huisarts_filler        =   $client->huisarts;
 	$opmerking_filler       =   $client->information;
 }
@@ -47,6 +47,7 @@ if (Input::get('first_name')) {
 	$phone_filler           =   Input::get('mobile_number');
 	$insurance_filler       =   Input::get('insurance');
 	$huisarts_filler        =   Input::get('huisarts');
+	$verzekering_filler     =   Input::get('verzekering');
 	$condition              =   Input::get('condition');
 }
 
@@ -63,7 +64,6 @@ if (Input::get('first_name')) {
 			'polis_number' => array( 'required' => true, 'min' =>'1' ),
 		]);
 		if ($validation->passed()) {
-			$hashed_password = password_hash(Input::get('password'), PASSWORD_DEFAULT);
 			print_r(Database::getInstance()->update(
 				'clients',$user_id,
 				[
@@ -71,7 +71,6 @@ if (Input::get('first_name')) {
 					'infix'             =>  Input::get('infix'),
 					'last_name'         =>  Input::get('last_name'),
 					'email'             =>  Input::get('email'),
-					'hash'              =>  $hashed_password,
 					'biological_gender' =>  Input::get('gender'),
 					'date_of_birth'     =>  Input::get('date_of_birth'),
 					'adress'            =>  Input::get('adress'),
@@ -81,7 +80,7 @@ if (Input::get('first_name')) {
 					'bloodtype'         =>  Input::get('bloodtype'),
 					'bsn_number'        =>  Input::get('bsn_number'),
 					'polis_number'      =>  Input::get('polis_number'),
-					'insurance'         =>  Input::get('insurance'),
+					'insurance'         =>  Input::get('verzekering'),
 					'huisarts'          =>  Input::get('huisarts')
 				]));
 		} else
@@ -112,10 +111,6 @@ if (Input::get('first_name')) {
 		<div class="form-group">
 			<label for="first_name">Achternaam</label>
 			<input type="text" class="form-control"name="last_name" id="last_name" placeholder="Achternaam" required="required" value="<?php echo $lastname_filler?>">
-		</div>
-		<div class="form-group">
-			<label for="password">Wachtwoord</label>
-			<input type="password" class="form-control" name="password" id="password" value="" required="required" placeholder="Wachtwoord">
 		</div>
 		<?php echo $errors?>
 		<br>
@@ -206,19 +201,21 @@ if (Input::get('first_name')) {
 
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
-			<label class="input-group-text" for="insurance">Zorgverzekering</label>
+			<label class="input-group-text" for="verzekering">Zorgverzekering</label>
 		</div>
-		<select name="insurance" class="custom-select" id="insurance">
-			<option selected>Kies...</option>
+        <select name="verzekering" class="custom-select" id="huisarts">
 			<?php
-			$insurance = Database::getInstance()->query(
-				"SELECT DISTINCT insurance FROM insurance");
-			foreach ($insurance->results() as $i) {
-				echo "<option value='$i->insurance' ";
-				echo "> " . $i->insurance . "</option>";
+			$verzekeringen = Database::getInstance()->get(
+				'insurance',
+				[
+					'id', '>=', 1
+				]);
+			foreach ($verzekeringen->results() as $verzekering) {
+				echo "<option value='$verzekering->id' "; if ($verzekering_filler == $verzekering->id)  {echo "selected='selected'";};
+				echo ">".$verzekering->insurance_name ."</option>";
 			}
 			?>
-		</select>
+        </select>
 	</div>
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
@@ -232,8 +229,8 @@ if (Input::get('first_name')) {
 					'role_id', '>=', 2
 				]);
 			foreach ($huisartsen->results() as $huisarts) {
-				echo "<option value='$huisarts->id' ";
-				echo "> " .$huisarts->id." " . $huisarts->first_name ." ".$huisarts->infix." ".$huisarts->last_name. "</option>";
+				echo "<option value='$huisarts->id' "; if ($huisarts_filler == $huisarts->id)  {echo "selected='selected'";};
+				echo "> ".$huisarts->first_name ." ".$huisarts->infix." ".$huisarts->last_name. "</option>";
 			}
 			?>
 		</select>
@@ -323,7 +320,6 @@ INNER JOIN client_condition_list ON client_condition_list.condition_id=client_co
 		</div>
 	</div>
     </form>
-
 </div>
 <div class="col-md-6" >
 	<h1 class="display-5 text-center pt-5">Opmerkingen / beschrijving</h1>
@@ -354,15 +350,95 @@ INNER JOIN client_condition_list ON client_condition_list.condition_id=client_co
         ?>
 	</form>
 </div>
-<div class="col-md-12" >
-	<h1 class="display-5 text-center pt-5">Behandeling</h1>
-	<hr class="bg-secondary">
-	<form action="" method="post">
-		<div class="form-group">
-			<label for="first_name">Adres</label>
-			<input type="text" class="form-control" name="adres" id="adres" placeholder="Adres" required>
-		</div>
-		<input type="submit" class="btn btn-primary" value="Voeg toe">
-	</form>
+<div class="col-md-6" >
+    <h1 class="display-5 text-center pt-5">Aandoeningen</h1>
+    <hr class="bg-secondary">
+    <div class="row">
+        <div class="col-md-12" >
+			<?php
+			$medications = Database::getInstance()->get(
+				'medicine',
+				[
+					'id', '>=', 1
+				]);
+			?>
+            <form action="" method="post">
+                <div class="form-group">
+                    Voeg medicijn toe:<br>
+                    <select name="medicine">
+						<?php
+						foreach ($medications->results() as $medication) {
+							echo "<option class=\"form-control\" value='$medication->id' "; echo "> ".$medication->medicine_name."</option>";
+						}
+						?>
+                    </select>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Voeg toe">
+				<?php
+				if (Input::get('medicine')) {
+				    echo "medicine input";
+					Database::getInstance()->insert(
+						'medicine_list',
+						[
+							'medicine_id'  =>  Input::get('medicine'),
+							'medicine_user_id'  =>  $user_id
+						]);
+				}
+				?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" >
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Medicijn opgehaald:</th>
+                    <th>Medicijn naam:</th>
+                    <th>Medicijn beschrijving:</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <script>
+                    $(document).ready(function(){
+                        $("#myInput").on("keyup", function() {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
+                <br>
+                <input id="myInput" type="text" placeholder="Search..">
+                <br><br>
+                </form>
+
+                <?php
+				$medicijnen = Database::getInstance()->query(
+					'SELECT medicine_list.medicine_user_id, medicine_list.medicine_id,medicine.medicine_name, medicine.medicine_description FROM medicine INNER JOIN medicine_list ON medicine_list.medicine_id=medicine.id WHERE medicine_user_id = '.$user_id);
+				foreach ($medicijnen->results() as $medicijn) {
+					?>
+                    <tr>
+
+                        <td><form action = "medication_delete" method = "GET">
+                                <input type="hidden" name="id" value="<?php echo $user_id?>">
+                                <input type="hidden" name="medicine_id" value="<?php echo $medicijn->medicine_id?>">
+                                <input type="submit" value="Medicijn is opgehaald">
+                            </form>
+                        </td>
+                        <td><?php echo $medicijn->medicine_name; ?></td>
+                        <td><?php echo $medicijn->medicine_description; ?></td>
+                    </tr>
+					<?php
+					}
+				?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <?php
+
+    ?>
 </div>
 

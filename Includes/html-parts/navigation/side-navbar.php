@@ -22,8 +22,8 @@ if (!$user->count()) {
 }
 ?>
 <!-- Sidebar -->
-<div class="bg-light border-right" id="sidebar-wrapper">
-    <h1 class="display-7 text-center pt-1">Dashboard</h1>
+<div  id="sidebar-wrapper">
+    <h1 class="display-7 text-center pt-1"><img src="images/syringe.svg" height="70px"></h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <?php
@@ -107,21 +107,8 @@ if (!$user->count()) {
             <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
 	            ";
             }
-            if(isset($_GET['medication_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
-	            ";
-            }
+
             if(isset($_GET['room_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
-	            ";
-            }
-            if(isset($_GET['medication_dashboard']))
             {
 	            echo "
 	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
@@ -139,7 +126,7 @@ if (!$user->count()) {
             {
 	            echo "
 	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
+            <li class=\"breadcrumb-item active\" aria-current=\"page\">Permissies Dashboard</li>
 	            ";
             }
             if(isset($_GET['role_dashboard']))
@@ -153,7 +140,7 @@ if (!$user->count()) {
             {
 	            echo "
 	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-	        <li class=\"breadcrumb-item\"><a href=\"?user_dashboard\">Rollen dashboard</a></li>
+	        <li class=\"breadcrumb-item\"><a href=\"?role_dashboard\">Rollen dashboard</a></li>
             <li class=\"breadcrumb-item active\" aria-current=\"page\">Gebruikers registreren</li>
 	            ";
             }
@@ -178,6 +165,9 @@ if (!$user->count()) {
     <div class="list-group list-group-flush">
 	    <?php
 	    foreach ($permissions->results() as $permission) {
+		    if ($permission->role_id == 2) {
+			    echo "<a href=\"?client_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Cliënten Dashboard</a>";
+		    }
 		    if ($permission->user_permission_id == 2) {
 			    echo "<a href=\"?client_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Cliënten Dashboard</a>";
 		    }
@@ -190,9 +180,9 @@ if (!$user->count()) {
 /*		    if ($permission->user_permission_id == 11) {
 			    echo "<a href=\"?establishment_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Establishment Dashboard</a>";
 		    }*/
-/*		    if ($permission->user_permission_id == 14) {
+		    if ($permission->user_permission_id == 14) {
 			    echo "<a href=\"?medication_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Medicatie Dashboard</a>";
-		    }*/
+		    }
 /*		    if ($permission->user_permission_id == 17) {
 			    echo "<a href=\"?treatment_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Behandelingen Dashboard</a>";
 		    }*/

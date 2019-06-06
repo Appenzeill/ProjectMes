@@ -2,7 +2,7 @@
 <div class="col-md-4">
 	<h1 class="display-5 text-center pt-5">Gebruiker menu</h1>
 	<hr class="bg-secondary">
-	<a href="?user_create=" class="btn btn-primary">Nieuwe Dashboard</a>
+	<a href="?user_create=" class="btn btn-primary">Nieuwe gebruiker</a>
 	<hr>
 </div>
 

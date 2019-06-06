@@ -17,7 +17,7 @@ $bsn_filler             = "";
 $polis_number_filler    = "";
 $birth_day_filler       = "";
 $phone_filler           = "";
-$insurance_filler       = "";
+$verzekering_filler       = "";
 $huisarts_filler        = "";
 if (Input::exists()) {
 	$firstname_filler       =   Input::get('first_name');
@@ -33,7 +33,7 @@ if (Input::exists()) {
 	$polis_number_filler    =   Input::get('polis_number');
 	$birth_day_filler       =   Input::get('date_of_birth');
 	$phone_filler           =   Input::get('mobile_number');
-	$insurance_filler       =   Input::get('insurance');
+	$verzekering_filler     =   Input::get('verzekering');
 	$huisarts_filler        =   Input::get('huisarts');
 }
 
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					'bloodtype'         =>  Input::get('bloodtype'),
 					'bsn_number'        =>  Input::get('bsn_number'),
 					'polis_number'      =>  Input::get('polis_number'),
-					'insurance'         =>  Input::get('insurance')
+					'insurance'         =>  Input::get('verzekering'),
 				]);
 		} else
 
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <div class="col-md-4">
-	<form action="" method="post">
+	<form action="" method="post" id="signUpForm">
 		<h1 class="display-5 text-center pt-5">Basis gegevens</h1>
 		<hr class="bg-secondary">
 		<div class="form-group">
@@ -107,23 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 		<?php echo $errors?>
 		<br>
-		<?php
-		/*echo "<br>".Input::get('first_name');
-		echo "<br>".Input::get('infix');
-		echo "<br>".Input::get('last_name');
-		echo "<br>".Input::get('email');
-		echo "<br>".Input::get('adress');
-		echo "<br>".Input::get('city');
-		echo "<br>".Input::get('postal_code');
-		echo "<br>".Input::get('gender');
-		echo "<br>".Input::get('bloodtype');
-		echo "<br>".Input::get('bsn_number');
-		echo "<br>".Input::get('polis_number');
-		echo "<br>".Input::get('date_of_birth');
-		echo "<br>".Input::get('mobile_number');
-		echo "<br>".Input::get('insurance');
-		echo "<br>".Input::get('huisarts');*/
-		?>
+
+
+
 </div>
 <div class="col-md-4" >
 	<h1 class="display-5 text-center pt-5">Contact gegevens</h1>
@@ -196,17 +182,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<div class="input-group-prepend">
 			<label class="input-group-text" for="insurance">Zorgverzekering</label>
 		</div>
-		<select name="insurance" class="custom-select" id="insurance">
-			<option selected>Kies...</option>
+        <select name="verzekering" class="custom-select" id="huisarts">
 			<?php
-			$insurance = Database::getInstance()->query(
-				"SELECT DISTINCT insurance FROM insurance");
-			foreach ($insurance->results() as $i) {
-				echo "<option value='$i->insurance' ";
-				echo "> " . $i->insurance . "</option>";
+			$verzekeringen = Database::getInstance()->get(
+				'insurance',
+				[
+					'id', '>=', 1
+				]);
+			foreach ($verzekeringen->results() as $verzekering) {
+				echo "<option value='$verzekering->id' "; if ($verzekering_filler == $verzekering->id)  {echo "selected='selected'";};
+				echo ">".$verzekering->insurance_name ."</option>";
 			}
 			?>
-		</select>
+        </select>
 	</div>
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
@@ -229,25 +217,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	</div>
 </div>
 <div class="col-md-12">
-	<input type="submit" value="Voeg toe">
+	<input type="submit" class="btn btn-primary" id="submitknop"value="Voeg toe">
+    <br>
+    <br>
+    <br>
+    <br>
 	</form>
 </div>
+<script>
+    const signUpForm = document.getElementById('signUpForm');
+    const emailField = document.getElementById('email');
+    const okButton = document.getElementById('submitknop');
 
-<div class="col-md-6" >
-	<h1 class="display-5 text-center pt-5">Allergiëen</h1>
-	<hr class="bg-secondary">
-	<div class="form-group">
-		<label for="first_name">Adres</label>
-		<input type="text" class="form-control" name="adres" id="adres" placeholder="Adres" required>
-	</div>
-</div>
-<div class="col-md-6" >
-	<h1 class="display-5 text-center pt-5">Aandoeningen</h1>
-	<hr class="bg-secondary">
-	<div class="form-group">
-		<label for="first_name">Adres</label>
-		<input type="text" class="form-control" name="adres" id="adres" placeholder="Adres" required>
-	</div>
+    emailField.addEventListener('keyup', function (event) {
+        isValidEmail = emailField.checkValidity();
 
+        if ( isValidEmail ) {
+            okButton.disabled = false;
+        } else {
+            okButton.disabled = true;
+        }
+    });
 
+    okButton.addEventListener('click', function (event) {
+        signUpForm.submit();
+    });
+
+</script>
 </div>

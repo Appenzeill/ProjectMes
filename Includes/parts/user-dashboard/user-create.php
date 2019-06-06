@@ -17,11 +17,9 @@ if (Input::exists()) {
 
 ?>
 <div class="col-md-10 content">
-	<div class="panel panel-default">
-		<div class="panel-heading" style="background-color: #3498DB; color: white;">
-			Registreer gebruiker
-		</div>
-		<div class="panel-body">
+
+		<div class="panel-body">	<h1 class="display-5 text-center pt-5">Gebruiker aanmaken</h1>
+            <hr class="bg-secondary">
 
 			<form action="" method="post">
 
@@ -72,6 +70,6 @@ if (Input::exists()) {
 			</form>
 
 			<br>
-		</div>
+
 	</div>
 </div>

@@ -54,42 +54,70 @@ if (Input::exists()) {
 ?>
 
 <body>
-<div class="login">
-	<div class="login-screen">
-		<div class="app-title">
-			<h1>Login</h1>
-		</div>
-		<form action="" id="firstform" method="post">
 
-			<div class="login-form">
-				<div class="control-group">
-					<input type="email" name="email" data-validate="required email" id="login-name" placeholder="user@example.com" value="<?php echo Input::get('email')?>" />
+<div class="wrapper">
+    <form action="" method="post" class="form-signin">
+        <h2 class="form-signin-heading">Login</h2>
+        <input type="email" name="email" data-validate="required email" id="login-name" placeholder="user@example.com" value="<?php echo Input::get('email')?>" />
 
-					<label class="login-field-icon fui-user" for="login-name"></label>
-				</div>
-
-				<div class="control-group">
-					<input type="password" data-validate="required" name="password" placeholder="wachtwoord" id="login-pass" id="login-pass"/>
-					<label class="login-field-icon fui-lock" for="login-pass"></label>
-				</div>
-				<?php echo $error;?>
-				<input type="hidden" name="token" value="<?php echo Token::generate()?>">
-				<input type="hidden" name="test" value="1">
-
-				<input class="btn btn-primary btn-large btn-block" type="submit" name="submit"  value="Login" />
-				<button onclick="submitForms()">test</button>
-				<a href="login.php">Inloggen als gebruiker</a>
-			</div>
-	</div>
-	</form>
-
+        <input type="password" data-validate="required" name="password" placeholder="wachtwoord" id="login-pass" id="login-pass"/>
+		<?php echo $error;?>
+        <input type="hidden" name="token" value="<?php echo Token::generate()?>">
+        <input class="btn btn-primary btn-large btn-block" type="submit" name="submit"  value="Login" />
+        <a href="login-client.php">Inloggen als gebruiker</a>
+    </form>
 </div>
 </body>
 <style>
-	body {
-		font-family: Arial;
-		background-color: #3498DB;
-	}
+    body {
+        display: table;
+        margin: 0 auto;
+        background-color: #007bff;
+    }
+
+    .wrapper {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    .form-signin {
+        max-width: 380px;
+        padding: 15px 35px 45px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 30px;
+    }
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+    .form-signin .form-control {
+        position: relative;
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="text"] {
+        margin-bottom: -1px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 20px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+
 </style>
 <script language="javascript">
     function() submitForms{

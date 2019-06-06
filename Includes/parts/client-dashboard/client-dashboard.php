@@ -6,15 +6,36 @@ $users = Database::getInstance()->get(
 		'id', '=', Session::get(Config::get('session/session_name')),
 	]);
 foreach ($users->results() as $user) {
-
-	    $users = Database::getInstance()->get(
+    if ($user->role_id == 1 ) {
+	    $users_list = Database::getInstance()->get(
 		    'clients',
 		    [
-			    'huisarts', '=', $user->id
-		    ]);
+			    'huisarts',
+			    '>=',
+			    1
+		    ] );
+ } elseif ($user->role_id == 3) {
+	    $users_list = Database::getInstance()->get(
+		    'clients',
+		    [
+			    'huisarts',
+			    '>=',
+			    1
+		    ] );
+    } else {
+		    $users_list = Database::getInstance()->get(
+			    'clients',
+			    [
+				    'huisarts',
+				    '=',
+				    $user->id
+			    ] );
+	    }
 
 }
 $user_role_id = "";
+
+
 ?>
 <div class="col-md-4">
         <h1 class="display-5 text-center pt-5">Basis gegevens</h1>
@@ -49,18 +70,18 @@ $user_role_id = "";
             <input id="myInput" type="text" placeholder="Search..">
             <br><br>
 		    <?php
-		    foreach ($users->results() as $user) {
+		    foreach ($users_list->results() as $user_list) {
 			    ?>
                 <tr>
                     <td>
                         <form action = "" method = "GET">
-                            <input type="hidden" name="client_edit" value="<?php echo $user->id; ?>">
+                            <input type="hidden" name="client_edit" value="<?php echo $user_list->id; ?>">
                             <input class="brn btn-primary" type="submit" value="Edit"/>
                         </form>
                     </td>
-                    <td><?php echo $user->first_name; ?></td>
-                    <td><?php echo $user->infix; ?></td>
-                    <td><?php echo $user->last_name; ?></td>
+                    <td><?php echo $user_list->first_name; ?></td>
+                    <td><?php echo $user_list->infix; ?></td>
+                    <td><?php echo $user_list->last_name; ?></td>
                 </tr>
 			    <?php
 		    }
