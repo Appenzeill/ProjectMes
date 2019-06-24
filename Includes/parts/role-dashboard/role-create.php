@@ -118,14 +118,9 @@ INNER JOIN user_permission_lists ON user_roles.id=user_permission_lists.user_per
 				}
 				?>
         </div>
-		<?php echo $nope ?>
-        <input type="hidden" name="token" value="<?php echo token::generate();?>">
+    <?php echo $nope ?>
         <input type="submit" value="Pas rol aan">
-        </form>
-        <?php
-
-
-        ?>
+    </form>
         <script>
             const addSelected = element => {
                 let value = $($("select[name='selectRole']")[0]).val();

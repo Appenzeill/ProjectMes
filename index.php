@@ -131,15 +131,35 @@ if(isset($_GET['condition_dashboard']))
 // Aandoeningen dashboard pagina
 if(isset($_GET['user_dashboard']))
 {
-	include_once( "Includes/parts/user-dashboard/user-dashboard.php" );
+	include_once( "Includes/parts/user-dashboard/user-dashboard.php");
 }
 if(isset($_GET['user_create']))
 {
-	include_once( "Includes/parts/user-dashboard/user-create.php" );
+	include_once( "Includes/parts/user-dashboard/user-create.php");
 }
 if(isset($_GET['user_role_edit']))
 {
-	include_once( "Includes/parts/user-dashboard/user-create.php" );
+	include_once( "Includes/parts/user-dashboard/user-create.php");
+}
+if(isset($_GET['calendar_dashboard']))
+{
+    include_once( "Includes/parts/calendar-dashboard/calendar-dashboard.php");
+}
+if(isset($_GET['beeldbank-dashboard']))
+{
+    include_once( "Includes/parts/beeldbank-dashboard/beeldbank-dashboard.php");
+}
+if(isset($_GET['chat_dashboard']))
+{
+    include_once( "Includes/parts/chat-dashboard/chat-dashboard.php");
+}
+if(isset($_GET['room']))
+{
+    include_once( "Includes/parts/chat-dashboard/chat-response.php");
+}
+if(isset($_GET['appointment_dashboard']))
+{
+    include_once( "Includes/parts/appointment-dashboard/appointment-dashboard.php");
 }
 ?>
         </div>
@@ -147,9 +167,7 @@ if(isset($_GET['user_role_edit']))
 </div>
 <?php
 
-$calendar = new Calendar();
 
-echo $calendar->show();
 
 include_once("Includes/html-parts/html/bottom.php");
 

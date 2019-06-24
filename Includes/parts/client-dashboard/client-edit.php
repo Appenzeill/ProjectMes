@@ -12,6 +12,7 @@ $clients = Database::getInstance()->get(
 	[
 		'id', '=', $user_id
 	]);
+
 foreach ($clients->results() as $client) {
 	$firstname_filler       =   $client->first_name;
 	$infix_filer            =   $client->infix;
@@ -83,10 +84,7 @@ if (Input::get('first_name')) {
 					'insurance'         =>  Input::get('verzekering'),
 					'huisarts'          =>  Input::get('huisarts')
 				]));
-		} else
-
-
-		{
+		} else {
 			foreach ($validation->errors() as $error) {
 				$errors .= "<br>{$error}";
 
@@ -350,8 +348,9 @@ INNER JOIN client_condition_list ON client_condition_list.condition_id=client_co
         ?>
 	</form>
 </div>
+
 <div class="col-md-6" >
-    <h1 class="display-5 text-center pt-5">Aandoeningen</h1>
+    <h1 class="display-5 text-center pt-5">Medicijn</h1>
     <hr class="bg-secondary">
     <div class="row">
         <div class="col-md-12" >
@@ -440,5 +439,155 @@ INNER JOIN client_condition_list ON client_condition_list.condition_id=client_co
     <?php
 
     ?>
+</div>
+<div class="col-md-6" >
+    <h1 class="display-5 text-center pt-5">Beeldbank</h1>
+    <hr class="bg-secondary">
+        <form method="post" enctype="multipart/form-data">
+            <br>
+            <input type="file" name="image">
+            <br>
+            <input type="textarea" class="form-control mt-3" name="description" id="naam" placeholder="Groep" required>
+            <br>
+            <input type="submit" class="btn btn-brand btn-block" name="submit" id="submit" value="Upload">
+        </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Naam</th>
+                <th>datum</th>
+                <th>Groep</th>
+                <th>Document</th>
+                <th>Type</th>
+            </tr>
+            </thead>
+            <?php
+            if (isset($_POST['submit'])) {
+                if (getimagesize($_FILES['image']['tmp_name']) == FALSE) {
+                    echo "Please select an image";
+                } else {
+                    $image = addslashes($_FILES['image']['tmp_name']);
+                    $name = addslashes($_FILES['image']['name']);
+                    $image = file_get_contents($image);
+                    $image = base64_encode($image);
+                    saveImage($user_id, $name, $image);
+                }
+            }
+            displayImage($user_id);
+
+            function saveImage($user_id, $name, $image)
+            {
+                $date = date('Y-m-d G:i:s');
+                Database::getInstance()->insert(
+                    'digital_archive',
+                    [
+                        'client_id' => $user_id,
+                        'name' => $name,
+                        'image' => $image,
+                        'date' => $date,
+                        'description' => Input::get('description'),
+                    ]);
+            }
+
+            ?>
+
+            <?php
+            function displayImage($user_id)
+            {
+            $allImg = Database::getInstance()->query(
+                "SELECT * FROM digital_archive WHERE client_id = '$user_id'  ORDER BY date ASC;"
+            );
+            ?>
+            <tbody id="myTable">
+            <script>
+                $(document).ready(function(){
+                    $("#myInput").on("keyup", function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#myTable tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
+                });
+            </script>
+            <br>
+            <input id="myInput" type="text" placeholder="Search..">
+            <br><br>
+            <?php
+            foreach ($allImg->results() as $img) {
+                ?>
+                <tr>
+                    <td>
+                        <?php
+                        $type = explode('.', $img->name)[0];
+                        echo $type;
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        echo $img->date;
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        echo $img->description;
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        $type = explode('.', $img->name)[1];
+                        $base64 = 'data:image/' . $type . ';base64,' . $img->image;
+                        ?>
+                        <img id="myImg" onclick="openModal('<?php echo $base64 ?>', '<?php echo $img->name ?>')" src="<?php echo $base64 ?>" alt="<?php echo $img->name ?>" style="width:100%;max-width:300px">
+
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+                            <span class="close">&times;</span>
+                            <img src="" class="modal-content" id="modal-img">
+                            <div id="caption"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <?php
+                        echo $type;
+                        ?>
+                    </td>
+                </tr>
+
+                <?php
+            }
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function openModal(base64, caption){
+            const modal = document.getElementById("myModal");
+
+            const modalImg = document.getElementById("modal-img");
+            const captionText = document.getElementById("caption");
+
+
+            captionText.innerHTML = caption;
+            modalImg.src = base64;
+            modal.style.display = "block";
+            // img.onclick = function(){
+            //   modal.style.display = "block";
+            //   modalImg.src = this.src;
+            //   captionText.innerHTML = this.alt;
+            // };
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
+        // Get the modal
+
+    </script>
 </div>
 

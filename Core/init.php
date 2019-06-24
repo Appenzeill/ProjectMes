@@ -5,7 +5,7 @@ $GLOBALS['config'] = [
 	'mysql' => [
 		'host' => '127.0.0.1',
 		'username' => 'root',
-		'password' => '',
+		'password' => 'Welkom01!',
 		'db' => 'projectmes'
 	],
 	'remember' => [

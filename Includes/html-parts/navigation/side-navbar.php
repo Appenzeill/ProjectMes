@@ -24,144 +24,7 @@ if (!$user->count()) {
 <!-- Sidebar -->
 <div  id="sidebar-wrapper">
     <h1 class="display-7 text-center pt-1"><img src="images/syringe.svg" height="70px"></h1>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <?php
-            if(isset($_GET['start_screen']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-	            ";
-            }
-            if(isset($_GET['client_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Cliënten dashboard</li>
 
-	            ";
-            }
-            if(isset($_GET['client_new']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"?client_dashboard\">Cliënten dashboard</a></li>
-                <li class=\"breadcrumb-item active\" aria-current=\"page\">Cliënt aanmaken</li>
-	            ";
-            }
-            if(isset($_GET['client_edit']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"?client_dashboard\">Cliënten dashboard</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Cliënt aanpassen</li>
-	            ";
-            }
-            if(isset($_GET['user_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Gebruikers dashboard</li>
-	            ";
-            }
-            if(isset($_GET['user_create']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-	        	        <li class=\"breadcrumb-item\"><a href=\"?user_dashboard\">Gebruikers dashboard</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Gebruikers registreren</li>
-	            ";
-            }
-            if(isset($_GET['item_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
-	            ";
-            }
-            if(isset($_GET['establishment_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
-	            ";
-            }
-            if(isset($_GET['medication_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">test</a></li>
-	            ";
-            }
-            if(isset($_GET['treatment_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"\">Library</a></li>
-	            ";
-            }
-            if(isset($_GET['appointment_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
-	            ";
-            }
-
-            if(isset($_GET['room_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
-	            ";
-            }
-            if(isset($_GET['bed_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item\"><a href=\"#\">Library</a></li>
-	            ";
-            }
-            if(isset($_GET['permission_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Permissies Dashboard</li>
-	            ";
-            }
-            if(isset($_GET['role_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Rollen Dashboard</li>
-	            ";
-            }
-            if(isset($_GET['role_add']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-	        <li class=\"breadcrumb-item\"><a href=\"?role_dashboard\">Rollen dashboard</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Gebruikers registreren</li>
-	            ";
-            }
-            if(isset($_GET['role_create']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-	        <li class=\"breadcrumb-item\"><a href=\"?role_dashboard\">Rollen dashboard</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Rollen menu</li>
-	            ";
-            }
-            if(isset($_GET['condition_dashboard']))
-            {
-	            echo "
-	        <li class=\"breadcrumb-item\"><a href=\"?start_screen\">Home</a></li>
-            <li class=\"breadcrumb-item active\" aria-current=\"page\">Aandoeningen Dashboard</li>
-	            ";
-            }
-            ?>
-        </ol>
-    </nav>
     <div class="list-group list-group-flush">
 	    <?php
 	    foreach ($permissions->results() as $permission) {
@@ -207,8 +70,15 @@ if (!$user->count()) {
 		    if ($permission->user_permission_id == 38) {
 			    echo "<a href=\"?condition_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Aandoeningen Dashboard</a>";
 		    }
-		    if ($permission->user_permission_id == 40) {
-		    }
+		    if ($permission->user_permission_id == 43) {
+                echo "<a href=\"?calendar_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Agenda</a>";
+            }
+            if ($permission->user_permission_id == 45) {
+                echo "<a href=\"?chat_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Chat Dashboard</a>";
+            }
+            if ($permission->user_permission_id == 48) {
+                echo "<a href=\"?appointment_dashboard=\" class=\"list-group-item list-group-item-action bg-light\"> Afspraken Dashboard</a>";
+            }
 	    }
 	    ?>
     </div>

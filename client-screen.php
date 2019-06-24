@@ -1,8 +1,6 @@
 <?php
 include_once("Core/init.php");
 include_once("Includes/html-parts/html/top.php");
-include_once("Includes/html-parts/client-nav/side-navbar.php");
-include_once("Includes/html-parts/client-nav/top-navbar.php");
 $client_id = $_GET["id"];
 
 $aandoeningen = Database::getInstance()->get(
@@ -25,8 +23,103 @@ foreach ($clients->results() as $client) {
     ?>
     <div class="container-fluid">
     <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-5 text-center pt-5">HAP</h1>
+            <hr class="bg-secondary">
+            <?php
+            $errors = '';
+            $status = "";
+            $id = Session::get(Config::get('session/session_name'));
 
-        <div class="col-md-6">
+            $check = Database::getInstance()->query(
+                "SELECT DISTINCT client_id FROM chat where client_id = {$client_id}");
+            if ( $check->results() != null ) {
+//		echo "Er is een room gevonden voor de gebruiker";
+                $room = Database::getInstance()->query(
+                    "SELECT DISTINCT room FROM chat WHERE client_id = {$client_id}");
+                foreach ($room->results() as $r){
+                    $rm = $r->room;
+                }
+            } else {
+//		echo "Er zijn geen rooms met deze gebruiker";
+                $room = Database::getInstance()->query(
+                    "SELECT MAX(room) AS max FROM chat ");
+                foreach ($room->results() as $r){
+                    $rm = $r->max + 1;
+                }
+            }
+
+            if (Input::exists()) {
+                $validate = new Validate();
+                $validation = $validate->check($_POST,[
+                    'msg' => array( 'required' => true),
+                ]);
+                $time = date("Y-m-d H:i:s");
+
+                if ($validation->passed()) {
+                    Database::getInstance()->create(
+                        'chat',
+                        [
+                            'client_id' => $client_id,
+                            'msg' => "Client: " .Input::get('msg'),
+                            'time' => $time,
+                            'room' => $rm,
+                        ]);
+                    }
+                }
+            ?>
+            <div>
+                <form class="mx-auto" style="width: 500px;" action="" method="post">
+                    <div>
+
+                        <iframe src="client-hap.php?id=<?php echo $client_id?>">
+                            <p>Your browser does not support iframes.</p>
+                        </iframe>
+                    </div>
+                    <div class="form-group">
+                        <input type="textarea" class="form-control" name="msg" id="msg" placeholder="Bericht" autocomplete="off" required>
+                    </div>
+                    <input class="btn btn-brand btn-block " type="submit" value="Verstuur">
+                </form>
+            </div>
+
+            <hr>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-md-4">
+            <h1 class="display-5 text-center pt-5">Basis gegevens</h1>
+            <hr class="bg-secondary">
+            <div class=\"form-group\">
+                <label for=\"password\"><b>Naam:</b></label><br>
+                <?php echo $client->first_name?>
+                <?php echo $client->infix?>
+                <?php echo $client->last_name?>
+            </div>
+            <hr>
+            <div class=\"form-group\">
+                <label for=\"password\"><b>Email:</b></label><br>
+                <?php echo $client->email?>
+            </div>
+            <hr>
+            <div class=\"form-group\">
+                <label for=\"password\"><b>Geboortedatum:</b></label><br>
+                <?php echo $client->date_of_birth?>
+            </div>
+            <hr>
+            <div class=\"form-group\">
+                <label for=\"password\"><b>Geslacht:</b></label><br>
+                <?php echo $client->biological_gender?>
+            </div>
+        </div>
+
+        <div class="col-md-4">
             <h1 class="display-5 text-center pt-5">Basis gegevens</h1>
             <hr class="bg-secondary">
             <div class=\"form-group\">
@@ -39,7 +132,6 @@ foreach ($clients->results() as $client) {
         <div class=\"form-group\">
         <label for=\"password\"><b>Email:</b></label><br>
 	        <?php echo $client->email?>
-
     </div>
     <hr>
     <div class=\"form-group\">
@@ -53,7 +145,7 @@ foreach ($clients->results() as $client) {
 	    <?php echo $client->biological_gender?>
     </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h1 class="display-5 text-center pt-5">Basis gegevens</h1>
             <hr class="bg-secondary">
             <table class="table">
