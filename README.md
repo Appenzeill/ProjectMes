@@ -20,7 +20,7 @@ if(isset($_GET['start_screen']))
 	include_once("Includes/parts/dashboard.php");
 }
 
-Dit zou ik in het vervolg veel simpeler aanpakken door normale structuur te volgen met /www.website.nl/dashboard enbijvoorbeeld /www.website.nl/dashboard/permissions.
+Dit zou ik in het vervolg veel simpeler aanpakken door normale structuur te volgen met /www.website.nl/dashboard en bijvoorbeeld /www.website.nl/dashboard/permissions.
 
 ## License
 MIT © 
